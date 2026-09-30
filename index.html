@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FurMems Co. — Custom pet portraits and keepsakes</title>
+<meta name="description" content="Turn your pet's photo into a custom portrait, mug, blanket or keychain. Preview it on every product before you order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1F8; --surface:#FFFFFF; --stage:#E9E3F3; --ink:#2E2A45; --muted:#696482;
+  --line:#DCD5E8; --accent:#F7B9A6; --accent-ink:#2E2A45; --rose:#F2C6D0; --mint:#CFE8DC;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1D1A2B; --surface:#262238; --stage:#2E2944; --ink:#F2EFF8; --muted:#B3ACCB; --line:#3A3452;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1D1A2B; --surface:#262238; --stage:#2E2944; --ink:#F2EFF8; --muted:#B3ACCB; --line:#3A3452;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); font-size:1.0625rem; line-height:1.55; -webkit-font-smoothing:antialiased}
+img,svg{max-width:100%; display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:6px}
+.wrap{max-width:1180px; margin:0 auto; padding:0 1.25rem}
+
+/* Header */
+header{padding:1.25rem 0}
+.bar{display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+.brand{display:flex; align-items:center; gap:.6rem; text-decoration:none}
+.brand svg{width:34px; height:34px}
+.brand span{font-family:var(--display); font-size:1.45rem; letter-spacing:-.01em}
+nav{display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap}
+nav a{text-decoration:none; color:var(--muted); font-weight:500; font-size:.98rem}
+nav a:hover{color:var(--ink)}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border:0; cursor:pointer;
+  font:600 1rem var(--body); padding:.8rem 1.25rem; border-radius:999px; text-decoration:none; transition:transform .15s ease}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent); color:var(--accent-ink)}
+.btn-ghost{background:transparent; color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line)}
+nav .btn{padding:.55rem 1rem; color:var(--accent-ink)}
+
+/* Hero / studio */
+.hero{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:3rem; align-items:start; padding:2.5rem 0 4.5rem}
+h1{font-family:var(--display); font-weight:400; font-size:clamp(2.4rem,5vw,3.9rem); line-height:1.04; letter-spacing:-.02em; margin:0 0 1.1rem}
+.lede{color:var(--muted); font-size:1.15rem; max-width:34ch; margin:0 0 2rem}
+
+.drop{display:block; border:2px dashed var(--line); border-radius:20px; padding:1.4rem; background:var(--surface); cursor:pointer; transition:border-color .2s, background .2s}
+.drop:hover,.drop.over{border-color:var(--accent)}
+.drop input{position:absolute; width:1px; height:1px; opacity:0}
+.drop-row{display:flex; align-items:center; gap:1rem}
+.thumb{width:64px; height:64px; border-radius:14px; overflow:hidden; flex:none; background:var(--stage)}
+.thumb img{width:100%; height:100%; object-fit:cover}
+.drop strong{display:block; font-size:1.05rem}
+.drop small{color:var(--muted); font-size:.9rem}
+.drop:focus-within{outline:3px solid var(--accent); outline-offset:3px}
+.msg{min-height:1.4em; margin:.6rem 0 0; font-size:.92rem; color:#B3413A}
+:root[data-theme="dark"] .msg{color:var(--rose)}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .msg{color:var(--rose)} }
+
+fieldset{border:0; padding:0; margin:1.6rem 0 0}
+legend{font-weight:600; margin-bottom:.7rem; padding:0}
+.chips{display:flex; flex-wrap:wrap; gap:.5rem}
+.chip{font:500 .95rem var(--body); padding:.55rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.note{color:var(--muted); font-size:.88rem; margin:1.2rem 0 1.6rem; max-width:44ch}
+.actions{display:flex; gap:.7rem; flex-wrap:wrap}
+
+.products{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem}
+.product{background:var(--stage); border-radius:24px; padding:.8rem .8rem 1rem; margin:0}
+.product svg{width:100%; height:auto; aspect-ratio:1}
+.product figcaption{display:flex; justify-content:space-between; align-items:baseline; padding:0 .5rem; font-weight:600}
+.product figcaption span{color:var(--muted); font-weight:400; font-size:.9rem}
+.product:first-child{grid-row:span 1}
+.pop{animation:pop .45s ease}
+@keyframes pop{from{opacity:.35; transform:scale(.97)} to{opacity:1; transform:none}}
+@media (prefers-reduced-motion:reduce){ .pop{animation:none} html{scroll-behavior:auto} .btn{transition:none} }
+
+/* Sections */
+section.block{padding:4.5rem 0; border-top:1px solid var(--line)}
+h2{font-family:var(--display); font-weight:400; font-size:clamp(1.9rem,3.4vw,2.6rem); line-height:1.1; letter-spacing:-.015em; margin:0 0 .8rem}
+.sub{color:var(--muted); max-width:52ch; margin:0 0 2.5rem}
+
+.steps{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2rem; counter-reset:s}
+.steps li{counter-increment:s}
+.steps li::before{content:counter(s); display:grid; place-items:center; width:2.6rem; height:2.6rem; border-radius:50%;
+  background:var(--accent); color:var(--accent-ink); font-family:var(--display); font-size:1.2rem; margin-bottom:1rem}
+.steps h3{font-size:1.1rem; margin:0 0 .35rem}
+.steps p{color:var(--muted); margin:0; font-size:.98rem}
+
+.gallery{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.25rem}
+.gallery figure{margin:0}
+.gallery svg{width:100%; height:auto; border-radius:6px; background:var(--surface); box-shadow:0 18px 30px -18px rgba(46,42,69,.35)}
+.gallery figcaption{margin-top:.8rem; font-weight:600}
+.gallery figcaption span{display:block; color:var(--muted); font-weight:400; font-size:.92rem}
+
+.closing{display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap}
+footer{padding:2.5rem 0 3rem; color:var(--muted); font-size:.92rem; border-top:1px solid var(--line)}
+footer .bar a{text-decoration:none}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr; gap:2.2rem; padding-top:1.5rem}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lede{max-width:none}
+}
+@media (max-width:520px){
+  nav a:not(.btn){display:none}
+  .products{gap:.6rem}
+  .product{padding:.5rem .5rem .8rem; border-radius:18px}
+  .product figcaption span{display:none}
+  .steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Shared SVG filters for the art styles -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="f-watercolor" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="1.1" result="b"/>
+      <feColorMatrix in="b" type="saturate" values="1.3" result="s"/>
+      <feComponentTransfer in="s">
+        <feFuncR type="linear" slope=".82" intercept=".18"/>
+        <feFuncG type="linear" slope=".82" intercept=".18"/>
+        <feFuncB type="linear" slope=".82" intercept=".18"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="f-pastel" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="2" result="grain"/>
+      <feDisplacementMap in="SourceGraphic" in2="grain" scale="4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation=".8" result="b"/>
+      <feColorMatrix in="b" type="saturate" values=".8" result="s"/>
+      <feComponentTransfer in="s">
+        <feFuncR type="linear" slope=".62" intercept=".36"/>
+        <feFuncG type="linear" slope=".6" intercept=".35"/>
+        <feFuncB type="linear" slope=".62" intercept=".38"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="f-oil" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feComponentTransfer in="b" result="p">
+        <feFuncR type="discrete" tableValues="0 .18 .36 .55 .74 .9 1"/>
+        <feFuncG type="discrete" tableValues="0 .18 .36 .55 .74 .9 1"/>
+        <feFuncB type="discrete" tableValues="0 .18 .36 .55 .74 .9 1"/>
+      </feComponentTransfer>
+      <feColorMatrix in="p" type="saturate" values="1.35"/>
+    </filter>
+    <filter id="f-pop" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="2.4" result="s"/>
+      <feComponentTransfer in="s">
+        <feFuncR type="discrete" tableValues="0.1 .55 1"/>
+        <feFuncG type="discrete" tableValues="0.05 .5 .95"/>
+        <feFuncB type="discrete" tableValues="0.25 .6 1"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="f-sketch" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0" result="g"/>
+      <feConvolveMatrix in="g" order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" preserveAlpha="true" result="e"/>
+      <feComponentTransfer in="e" result="a">
+        <feFuncR type="linear" slope="3.2"/><feFuncG type="linear" slope="3.2"/><feFuncB type="linear" slope="3.2"/>
+      </feComponentTransfer>
+      <feColorMatrix in="a" type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
+    </filter>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="FurMems Co. home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="6" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <path d="M20 10 C31 10 34 18 34 24 C34 32 28 37 20 37 C12 37 6 32 6 24 C6 18 9 10 20 10Z" fill="#F7B9A6"/>
+        <circle cx="20" cy="15.5" r="1.8" fill="#1C2440"/>
+        <path d="M14.5 25.5c0-1.6 1.2-2.6 2.2-2.6s2 .8 3.3.8 2.3-.8 3.3-.8 2.2 1 2.2 2.6c0 2.6-3.2 4.3-5.5 4.3s-5.5-1.7-5.5-4.3Z" fill="#1C2440"/>
+        <circle cx="15.2" cy="20.5" r="1.6" fill="#1C2440"/><circle cx="24.8" cy="20.5" r="1.6" fill="#1C2440"/>
+        <circle cx="18.6" cy="19" r="1.4" fill="#1C2440"/><circle cx="21.4" cy="19" r="1.4" fill="#1C2440"/>
+      </svg>
+      <span>FurMems Co.</span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#try">Try it</a>
+      <a href="#styles">Styles</a>
+      <a href="#how">How it works</a>
+      <a class="btn btn-primary js-etsy" href="#">Shop on Etsy</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <section class="hero" id="try" aria-label="Preview your pet on our products">
+      <div>
+        <h1>See your pet on it before you order.</h1>
+        <p class="lede">Upload a photo and preview it as a framed portrait, mug, blanket and keychain. Every piece is made to order from your pet's picture.</p>
+
+        <label class="drop" id="drop">
+          <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
+          <div class="drop-row">
+            <div class="thumb"><img id="thumb" alt=""></div>
+            <div>
+              <strong id="dropTitle">Upload your pet's photo</strong>
+              <small>Drag it here or tap to choose. JPG, PNG or WebP. Your photo stays on your device.</small>
+            </div>
+          </div>
+        </label>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+
+        <fieldset>
+          <legend>Pick a style</legend>
+          <div class="chips" id="chips">
+            <button type="button" class="chip" data-style="f-pastel" aria-pressed="true">Pastel painting</button>
+            <button type="button" class="chip" data-style="f-watercolor" aria-pressed="false">Watercolor</button>
+            <button type="button" class="chip" data-style="f-oil" aria-pressed="false">Oil paint</button>
+            <button type="button" class="chip" data-style="f-sketch" aria-pressed="false">Pencil sketch</button>
+            <button type="button" class="chip" data-style="" aria-pressed="false">Original photo</button>
+          </div>
+        </fieldset>
+
+        <p class="note">This is a quick preview. Your finished portrait is custom made, and you approve a proof before anything is printed.</p>
+        <div class="actions">
+          <a class="btn btn-primary js-etsy" href="#">Order on Etsy</a>
+          <button type="button" class="btn btn-ghost" id="reset">Use the sample pet</button>
+        </div>
+      </div>
+
+      <div class="products" id="products">
+        <!-- Framed portrait -->
+        <figure class="product">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Framed portrait preview">
+            <defs>
+              <clipPath id="c-portrait"><rect x="104" y="72" width="192" height="256"/></clipPath>
+              <filter id="sh1" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1C2440" flood-opacity=".28"/></filter>
+            </defs>
+            <rect x="72" y="40" width="256" height="320" rx="3" fill="#2B211B" filter="url(#sh1)"/>
+            <rect x="80" y="48" width="240" height="304" fill="#3A2C22"/>
+            <rect x="88" y="56" width="224" height="288" fill="#FAF9F6"/>
+            <image class="pet" clip-path="url(#c-portrait)" x="104" y="72" width="192" height="256" preserveAspectRatio="xMidYMid slice"/>
+          </svg>
+          <figcaption>Framed portrait <span>Canvas or poster</span></figcaption>
+        </figure>
+
+        <!-- Mug -->
+        <figure class="product">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Mug preview">
+            <defs>
+              <clipPath id="c-mug"><rect x="118" y="120" width="140" height="160" rx="10"/></clipPath>
+              <linearGradient id="g-mug" x1="0" x2="1">
+                <stop offset="0" stop-color="#000" stop-opacity=".22"/>
+                <stop offset=".22" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".42" stop-color="#fff" stop-opacity=".35"/>
+                <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".26"/>
+              </linearGradient>
+              <filter id="sh2" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1C2440" flood-opacity=".25"/></filter>
+            </defs>
+            <ellipse cx="190" cy="336" rx="110" ry="12" fill="#1C2440" opacity=".12"/>
+            <path d="M282 150c58-4 62 96 0 96" fill="none" stroke="#F4F5F8" stroke-width="20" stroke-linecap="round"/>
+            <path d="M282 150c58-4 62 96 0 96" fill="none" stroke="#000" stroke-opacity=".08" stroke-width="20" stroke-linecap="round"/>
+            <path d="M98 96h184v212c0 20-14 28-30 28H128c-16 0-30-8-30-28Z" fill="#F4F5F8" filter="url(#sh2)"/>
+            <image class="pet" clip-path="url(#c-mug)" x="118" y="120" width="140" height="160" preserveAspectRatio="xMidYMid slice"/>
+            <path d="M98 96h184v212c0 20-14 28-30 28H128c-16 0-30-8-30-28Z" fill="url(#g-mug)"/>
+            <ellipse cx="190" cy="96" rx="92" ry="10" fill="#DDE1E9"/>
+          </svg>
+          <figcaption>Mug <span>11 or 15 oz</span></figcaption>
+        </figure>
+
+        <!-- Blanket -->
+        <figure class="product">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Blanket preview">
+            <defs>
+              <clipPath id="c-blanket"><rect x="84" y="84" width="232" height="232" rx="4"/></clipPath>
+              <linearGradient id="g-fold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fff" stop-opacity=".18"/>
+                <stop offset=".3" stop-color="#000" stop-opacity=".12"/>
+                <stop offset=".45" stop-color="#fff" stop-opacity=".14"/>
+                <stop offset=".7" stop-color="#000" stop-opacity=".1"/>
+                <stop offset="1" stop-color="#fff" stop-opacity=".12"/>
+              </linearGradient>
+              <filter id="sh3" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#1C2440" flood-opacity=".25"/></filter>
+            </defs>
+            <g transform="rotate(-5 200 200)">
+              <rect x="64" y="64" width="272" height="272" rx="10" fill="#F1ECE6" filter="url(#sh3)"/>
+              <image class="pet" clip-path="url(#c-blanket)" x="84" y="84" width="232" height="232" preserveAspectRatio="xMidYMid slice"/>
+              <rect x="64" y="64" width="272" height="272" rx="10" fill="url(#g-fold)"/>
+              <rect x="72" y="72" width="256" height="256" rx="8" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 5"/>
+            </g>
+          </svg>
+          <figcaption>Blanket <span>Soft fleece</span></figcaption>
+        </figure>
+
+        <!-- Keychain -->
+        <figure class="product">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Keychain preview">
+            <defs>
+              <clipPath id="c-key"><rect x="138" y="150" width="124" height="164" rx="34"/></clipPath>
+              <linearGradient id="g-metal" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#E6E9EF"/><stop offset=".5" stop-color="#9AA2B1"/><stop offset="1" stop-color="#D5DAE3"/>
+              </linearGradient>
+              <filter id="sh4" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#1C2440" flood-opacity=".25"/></filter>
+            </defs>
+            <circle cx="200" cy="66" r="30" fill="none" stroke="url(#g-metal)" stroke-width="7"/>
+            <rect x="193" y="94" width="14" height="30" rx="7" fill="none" stroke="url(#g-metal)" stroke-width="5"/>
+            <rect x="122" y="118" width="156" height="212" rx="46" fill="#FFFFFF" fill-opacity=".85" stroke="#FFFFFF" stroke-width="2" filter="url(#sh4)"/>
+            <circle cx="200" cy="134" r="7" fill="var(--stage, #E2E8F1)" stroke="#C8CED9"/>
+            <image class="pet" clip-path="url(#c-key)" x="138" y="150" width="124" height="164" preserveAspectRatio="xMidYMid slice"/>
+            <path d="M140 170c10-18 28-24 44-24" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <figcaption>Keychain <span>Clear acrylic</span></figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+
+  <section class="block" id="styles" aria-labelledby="styles-h">
+    <div class="wrap">
+      <h2 id="styles-h">Soft pastel portraits, made from your photo</h2>
+      <p class="sub">Pastel painting is our signature look. Prefer something else? Choose watercolor, oil paint or pencil sketch. You approve a proof of every design.</p>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">How it works</h2>
+      <p class="sub">From your camera roll to your door in four steps.</p>
+      <ol class="steps">
+        <li><h3>Order on Etsy</h3><p>Pick your product and style, then upload your favorite photo at checkout.</p></li>
+        <li><h3>We make your portrait</h3><p>Your pet's photo becomes custom artwork in the style you chose.</p></li>
+        <li><h3>Approve your proof</h3><p>You see the finished design first and can ask for changes before printing.</p></li>
+        <li><h3>Printed and shipped</h3><p>Your keepsake is printed in the U.S. and shipped straight to you.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="cta-h">
+    <div class="wrap closing">
+      <div>
+        <h2 id="cta-h">Ready to make one?</h2>
+        <p class="sub" style="margin:0">Order on Etsy with buyer protection and secure checkout.</p>
+      </div>
+      <a class="btn btn-primary js-etsy" href="#">Shop FurMems Co. on Etsy</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap bar">
+    <span>© <span id="yr"></span> FurMems Co. Custom pet portraits and keepsakes.</span>
+    <a class="js-etsy" href="#">Etsy shop</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Replace with your live Etsy shop link
+  var ETSY_URL = "https://www.etsy.com/shop/FurMems";
+  document.querySelectorAll(".js-etsy").forEach(function(a){ a.href = ETSY_URL; a.target = "_blank"; a.rel = "noopener"; });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // Sample pet illustration shown before an upload
+  var sampleSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">' +
+    '<rect width="400" height="500" fill="#CFE0EA"/><circle cx="330" cy="80" r="120" fill="#F2DCE4"/>' +
+    '<path d="M60 500c10-110 70-160 140-160s130 50 140 160Z" fill="#C98A4B"/>' +
+    '<path d="M150 500c5-70 25-110 50-110s45 40 50 110Z" fill="#F6EDE3"/>' +
+    '<path d="M95 95 L150 200 L85 215 Z" fill="#B87437"/><path d="M305 95 L250 200 L315 215 Z" fill="#B87437"/>' +
+    '<path d="M108 125 L142 196 L100 205 Z" fill="#E7A298"/><path d="M292 125 L258 196 L300 205 Z" fill="#E7A298"/>' +
+    '<ellipse cx="200" cy="255" rx="112" ry="100" fill="#D9A066"/>' +
+    '<path d="M200 170c-20 30-22 60-22 80h44c0-20-2-50-22-80Z" fill="#F6EDE3"/>' +
+    '<ellipse cx="200" cy="300" rx="62" ry="48" fill="#F6EDE3"/>' +
+    '<circle cx="155" cy="240" r="13" fill="#1C2440"/><circle cx="245" cy="240" r="13" fill="#1C2440"/>' +
+    '<circle cx="159" cy="235" r="4" fill="#fff"/><circle cx="249" cy="235" r="4" fill="#fff"/>' +
+    '<ellipse cx="200" cy="282" rx="17" ry="12" fill="#1C2440"/>' +
+    '<path d="M200 294v14M182 312c10 10 26 10 36 0" stroke="#1C2440" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+    '<path d="M192 316c0 18 16 18 16 0" fill="#E7A298"/></svg>';
+  var SAMPLE = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(sampleSvg);
+
+  var current = SAMPLE, style = "f-pastel";
+  var pets = document.querySelectorAll(".pet");
+  var thumb = document.getElementById("thumb");
+  var msg = document.getElementById("msg");
+  var title = document.getElementById("dropTitle");
+  var products = document.getElementById("products");
+
+  function render(animate){
+    pets.forEach(function(el){
+      el.setAttribute("href", current);
+      if (style) el.setAttribute("filter", "url(#" + style + ")"); else el.removeAttribute("filter");
+    });
+    thumb.src = current;
+    if (animate){
+      products.querySelectorAll(".product").forEach(function(p){ p.classList.remove("pop"); void p.offsetWidth; p.classList.add("pop"); });
+    }
+  }
+
+  // Gallery: sample pet in each style
+  var styles = [
+    ["f-pastel","Pastel painting","Our signature: soft, chalky and light"],
+    ["f-watercolor","Watercolor","Soft edges and washed color"],
+    ["f-oil","Oil paint","Rich, painterly color blocks"],
+    ["f-sketch","Pencil sketch","Clean lines on white paper"]
+  ];
+  var gal = document.getElementById("gallery");
+  styles.forEach(function(s){
+    var f = document.createElement("figure");
+    f.innerHTML = '<svg viewBox="0 0 300 380" role="img" aria-label="' + s[1] + ' sample portrait">' +
+      '<rect width="300" height="380" fill="#FAF9F6"/>' +
+      '<image href="' + SAMPLE + '" x="18" y="18" width="264" height="344" preserveAspectRatio="xMidYMid slice" filter="url(#' + s[0] + ')"/></svg>' +
+      '<figcaption>' + s[1] + '<span>' + s[2] + '</span></figcaption>';
+    gal.appendChild(f);
+  });
+
+  // Style chips
+  document.getElementById("chips").addEventListener("click", function(e){
+    var b = e.target.closest(".chip"); if (!b) return;
+    document.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+    style = b.dataset.style; render(true);
+  });
+
+  // Upload handling (downscaled locally, never sent anywhere)
+  function load(file){
+    msg.textContent = "";
+    if (!file) return;
+    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)){
+      msg.textContent = "That file isn't a supported photo. Choose a JPG, PNG or WebP image.";
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(){
+      var img = new Image();
+      img.onload = function(){
+        var max = 900, s = Math.min(1, max / Math.max(img.width, img.height));
+        var c = document.createElement("canvas");
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        current = c.toDataURL("image/jpeg", 0.9);
+        title.textContent = "Looking good. Choose another photo";
+        render(true);
+      };
+      img.onerror = function(){ msg.textContent = "Couldn't read that photo. Try saving it as a JPG or PNG first."; };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+  var input = document.getElementById("file");
+  input.addEventListener("change", function(){ load(input.files[0]); input.value = ""; });
+  var drop = document.getElementById("drop");
+  ["dragenter","dragover"].forEach(function(t){ drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(t){ drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop", function(e){ load(e.dataTransfer.files[0]); });
+
+  document.getElementById("reset").addEventListener("click", function(){
+    current = SAMPLE; title.textContent = "Upload your pet's photo"; msg.textContent = ""; render(true);
+  });
+
+  render(false);
+})();
+</script>
+</body>
+</html>
