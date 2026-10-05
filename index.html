@@ -81,6 +81,29 @@ legend{font-weight:600; margin-bottom:.7rem; padding:0}
 .product svg{width:100%; height:auto; aspect-ratio:1}
 .product figcaption{display:flex; justify-content:space-between; align-items:baseline; padding:0 .5rem; font-weight:600}
 .product figcaption span{color:var(--muted); font-weight:400; font-size:.9rem}
+.real-btn{display:none; margin:.7rem .5rem 0; font:600 .9rem var(--body); color:var(--ink); background:var(--surface);
+  border:1.5px solid var(--line); border-radius:999px; padding:.5rem .9rem; cursor:pointer}
+.real-btn:hover{border-color:var(--ink)}
+.has-api .real-btn{display:inline-flex}
+dialog.mock{border:0; border-radius:24px; padding:0; width:min(560px, calc(100vw - 2rem)); max-height:calc(100dvh - 2rem);
+  background:var(--surface); color:var(--ink); box-shadow:0 30px 80px -20px rgba(46,42,69,.45)}
+dialog.mock::backdrop{background:rgba(30,26,43,.45)}
+.mock-body{padding:1.4rem; overflow:auto; max-height:calc(100dvh - 2rem)}
+.mock-head{display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem}
+.mock-head h3{font-family:var(--display); font-weight:400; font-size:1.5rem; margin:0}
+.x{border:0; background:var(--stage); color:var(--ink); width:2.4rem; height:2.4rem; border-radius:50%; font-size:1.3rem; cursor:pointer}
+.mock-stage{aspect-ratio:1; border-radius:16px; background:var(--stage); display:grid; place-items:center; overflow:hidden}
+.mock-stage img{width:100%; height:100%; object-fit:contain}
+.mock-wait{text-align:center; padding:1.5rem; color:var(--muted); font-size:.98rem}
+.spin{width:38px; height:38px; margin:0 auto 1rem; border-radius:50%; border:4px solid var(--line); border-top-color:var(--accent); animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.mock-thumbs{display:flex; gap:.5rem; margin-top:.7rem}
+.mock-thumbs button{padding:0; border:2px solid transparent; border-radius:10px; overflow:hidden; width:64px; height:64px; background:var(--stage); cursor:pointer}
+.mock-thumbs button[aria-pressed="true"]{border-color:var(--ink)}
+.mock-thumbs img{width:100%; height:100%; object-fit:cover}
+.mock-note{color:var(--muted); font-size:.88rem; margin:1rem 0}
+.mock-actions{display:flex; gap:.6rem; flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){ .spin{animation-duration:3s} }
 .product:first-child{grid-row:span 1}
 .pop{animation:pop .45s ease}
 @keyframes pop{from{opacity:.35; transform:scale(.97)} to{opacity:1; transform:none}}
@@ -213,7 +236,7 @@ footer .bar a{text-decoration:none}
             <div class="thumb"><img id="thumb" alt=""></div>
             <div>
               <strong id="dropTitle">Upload your pet's photo</strong>
-              <small>Drag it here or tap to choose. JPG, PNG or WebP. Your photo stays on your device.</small>
+              <small>Drag it here or tap to choose. JPG, PNG or WebP. Instant previews stay on your device.</small>
             </div>
           </div>
         </label>
@@ -230,7 +253,7 @@ footer .bar a{text-decoration:none}
           </div>
         </fieldset>
 
-        <p class="note">This is a quick preview. Your finished portrait is custom made, and you approve a proof before anything is printed.</p>
+        <p class="note">These are instant previews. Tap <strong>See the real product</strong> on any item for a true-to-life photo of it with your pet. Your finished portrait is custom made, and you approve a proof before anything is printed.</p>
         <div class="actions">
           <a class="btn btn-primary js-etsy" href="#">Order on Etsy</a>
           <button type="button" class="btn btn-ghost" id="reset">Use the sample pet</button>
@@ -251,6 +274,7 @@ footer .bar a{text-decoration:none}
             <image class="pet" clip-path="url(#c-portrait)" x="104" y="72" width="192" height="256" preserveAspectRatio="xMidYMid slice"/>
           </svg>
           <figcaption>Framed portrait <span>Canvas or poster</span></figcaption>
+          <button type="button" class="real-btn" data-product="portrait">See the real product</button>
         </figure>
 
         <!-- Mug -->
@@ -276,6 +300,7 @@ footer .bar a{text-decoration:none}
             <ellipse cx="190" cy="96" rx="92" ry="10" fill="#DDE1E9"/>
           </svg>
           <figcaption>Mug <span>11 or 15 oz</span></figcaption>
+          <button type="button" class="real-btn" data-product="mug">See the real product</button>
         </figure>
 
         <!-- Blanket -->
@@ -300,6 +325,7 @@ footer .bar a{text-decoration:none}
             </g>
           </svg>
           <figcaption>Blanket <span>Soft fleece</span></figcaption>
+          <button type="button" class="real-btn" data-product="blanket">See the real product</button>
         </figure>
 
         <!-- Keychain -->
@@ -320,6 +346,7 @@ footer .bar a{text-decoration:none}
             <path d="M140 170c10-18 28-24 44-24" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
           </svg>
           <figcaption>Keychain <span>Clear acrylic</span></figcaption>
+          <button type="button" class="real-btn" data-product="keychain">See the real product</button>
         </figure>
       </div>
     </section>
@@ -357,6 +384,22 @@ footer .bar a{text-decoration:none}
   </section>
 </main>
 
+<dialog class="mock" id="mockDialog" aria-labelledby="mockTitle">
+  <div class="mock-body">
+    <div class="mock-head">
+      <h3 id="mockTitle">Your product</h3>
+      <button type="button" class="x" id="mockClose" aria-label="Close">×</button>
+    </div>
+    <div class="mock-stage" id="mockStage"></div>
+    <div class="mock-thumbs" id="mockThumbs"></div>
+    <p class="mock-note" id="mockNote"></p>
+    <div class="mock-actions">
+      <a class="btn btn-primary js-etsy" href="#">Order on Etsy</a>
+      <button type="button" class="btn btn-ghost" id="mockClose2">Keep browsing</button>
+    </div>
+  </div>
+</dialog>
+
 <footer>
   <div class="wrap bar">
     <span>© <span id="yr"></span> FurMems Co. Custom pet portraits and keepsakes.</span>
@@ -388,7 +431,7 @@ footer .bar a{text-decoration:none}
     '<path d="M192 316c0 18 16 18 16 0" fill="#E7A298"/></svg>';
   var SAMPLE = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(sampleSvg);
 
-  var current = SAMPLE, style = "f-pastel";
+  var current = SAMPLE, style = "f-pastel", printSrc = null, photoVersion = 0;
   var pets = document.querySelectorAll(".pet");
   var thumb = document.getElementById("thumb");
   var msg = document.getElementById("msg");
@@ -447,6 +490,12 @@ footer .bar a{text-decoration:none}
         c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
         c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
         current = c.toDataURL("image/jpeg", 0.9);
+        var ps = Math.min(1, 1600 / Math.max(img.width, img.height));
+        var pc = document.createElement("canvas");
+        pc.width = Math.round(img.width * ps); pc.height = Math.round(img.height * ps);
+        var px = pc.getContext("2d"); px.fillStyle = "#fff"; px.fillRect(0, 0, pc.width, pc.height);
+        px.drawImage(img, 0, 0, pc.width, pc.height);
+        printSrc = pc.toDataURL("image/jpeg", 0.92); photoVersion++;
         title.textContent = "Looking good. Choose another photo";
         render(true);
       };
@@ -463,8 +512,99 @@ footer .bar a{text-decoration:none}
   drop.addEventListener("drop", function(e){ load(e.dataTransfer.files[0]); });
 
   document.getElementById("reset").addEventListener("click", function(){
-    current = SAMPLE; title.textContent = "Upload your pet's photo"; msg.textContent = ""; render(true);
+    current = SAMPLE; printSrc = null; photoVersion++; title.textContent = "Upload your pet's photo"; msg.textContent = ""; render(true);
   });
+
+  // ---- Real product mockups from Printify (through the FurMems preview service) ----
+  // Paste your Worker URL here, e.g. "https://furmems-preview.yourname.workers.dev"
+  var PREVIEW_API = "https://furmems-preview.furmems.workers.dev";
+  var LABELS = { portrait: "Framed portrait", mug: "Mug", blanket: "Blanket", keychain: "Keychain" };
+  var cache = {}, activeReq = 0;
+  var dlg = document.getElementById("mockDialog"), stage = document.getElementById("mockStage"),
+      thumbs = document.getElementById("mockThumbs"), note = document.getElementById("mockNote"),
+      mTitle = document.getElementById("mockTitle");
+  if (PREVIEW_API) document.documentElement.classList.add("has-api");
+
+  function loadImg(src){
+    return new Promise(function(res, rej){ var i = new Image(); i.onload = function(){ res(i); }; i.onerror = rej; i.src = src; });
+  }
+  function toJpeg(img, w, h){
+    var c = document.createElement("canvas"); c.width = w; c.height = h;
+    var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, w, h); x.drawImage(img, 0, 0, w, h);
+    return c.toDataURL("image/jpeg", 0.92); // throws if the browser blocks reading the canvas
+  }
+  // Turn the photo (with the chosen style) into a JPEG to print from
+  function printImage(){
+    var src = printSrc || SAMPLE;
+    return loadImg(src).then(function(img){
+      var w = img.naturalWidth || 1200, h = img.naturalHeight || 1500;
+      if (!printSrc){ w = 1200; h = 1500; }
+      var plain = function(){ return { data: toJpeg(img, w, h), styled: !style }; };
+      if (!style) return plain();
+      var f = document.getElementById(style).outerHTML;
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + w + '" height="' + h + '">' +
+        '<defs>' + f + '</defs><image href="' + src + '" xlink:href="' + src + '" width="' + w + '" height="' + h +
+        '" preserveAspectRatio="none" filter="url(#' + style + ')"/></svg>';
+      return loadImg("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg))
+        .then(function(si){ return { data: toJpeg(si, w, h), styled: true }; })
+        .catch(plain);
+    });
+  }
+
+  function showWait(text){
+    stage.innerHTML = '<div class="mock-wait"><div class="spin"></div>' + text + '</div>';
+    thumbs.innerHTML = ""; note.textContent = "";
+  }
+  function showError(text){
+    stage.innerHTML = '<div class="mock-wait">' + text + '</div>'; thumbs.innerHTML = "";
+  }
+  function showMockups(result){
+    var pick = function(i){
+      stage.innerHTML = '<img alt="' + mTitle.textContent + ' with your pet" src="' + result.mockups[i] + '">';
+      thumbs.querySelectorAll("button").forEach(function(b, j){ b.setAttribute("aria-pressed", i === j ? "true" : "false"); });
+    };
+    thumbs.innerHTML = result.mockups.length > 1 ? result.mockups.map(function(m, i){
+      return '<button type="button" aria-label="View ' + (i + 1) + '"><img alt="" src="' + m + '"></button>'; }).join("") : "";
+    thumbs.querySelectorAll("button").forEach(function(b, i){ b.addEventListener("click", function(){ pick(i); }); });
+    pick(0);
+    note.textContent = (result.styled
+      ? "This is a real product photo from our print partner with your photo in the style you picked."
+      : "This real product photo shows your original photo. Your finished piece will be in the style you picked.") +
+      " Your photo is only used to make this preview.";
+  }
+
+  function openMockup(key){
+    mTitle.textContent = "Your " + LABELS[key].toLowerCase();
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    var ck = key + "|" + style + "|" + photoVersion;
+    if (cache[ck]) return showMockups(cache[ck]);
+    var req = ++activeReq;
+    showWait("Making your " + LABELS[key].toLowerCase() + " with our print partner.<br>This usually takes 10 to 30 seconds.");
+    printImage().then(function(img){
+      return fetch(PREVIEW_API.replace(/\/$/, "") + "/mockup", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product: key, image: img.data.split(",")[1] })
+      }).then(function(r){
+        return r.json().catch(function(){ return {}; }).then(function(d){
+          if (!r.ok || !d.mockups || !d.mockups.length) throw new Error(d.error || "We couldn't make that preview. Please try again.");
+          d.styled = img.styled; return d;
+        });
+      });
+    }).then(function(d){
+      cache[ck] = d;
+      if (req === activeReq && dlg.open) showMockups(d);
+    }).catch(function(e){
+      if (req === activeReq) showError((e && e.message && e.message !== "Failed to fetch") ? e.message : "We couldn't reach the preview service. Check your connection and try again.");
+    });
+  }
+
+  document.querySelectorAll(".real-btn").forEach(function(b){
+    b.addEventListener("click", function(){ openMockup(b.dataset.product); });
+  });
+  function closeDlg(){ activeReq++; if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+  document.getElementById("mockClose").addEventListener("click", closeDlg);
+  document.getElementById("mockClose2").addEventListener("click", closeDlg);
+  dlg.addEventListener("click", function(e){ if (e.target === dlg) closeDlg(); });
 
   render(false);
 })();
