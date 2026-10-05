@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FurMems Co. — Custom pet portraits and keepsakes</title>
-<meta name="description" content="Turn your pet's photo into a custom portrait, mug, blanket or keychain. Preview it on every product before you order.">
+<meta name="description" content="Turn your pet's photo into a custom canvas, mug, woven blanket or ornament. Preview it on every product before you order.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
@@ -102,6 +102,16 @@ dialog.mock::backdrop{background:rgba(30,26,43,.45)}
 .mock-thumbs button[aria-pressed="true"]{border-color:var(--ink)}
 .mock-thumbs img{width:100%; height:100%; object-fit:cover}
 .mock-note{color:var(--muted); font-size:.88rem; margin:1rem 0}
+.mock-opts{margin:0 0 1rem}
+.mock-opts p{margin:0 0 .5rem; font-weight:600; font-size:.95rem}
+.mock-opts .chips{gap:.4rem}
+.mock-opts .chip{padding:.45rem .85rem; font-size:.9rem}
+.mock-back{margin-top:1rem; padding:1rem; border-radius:16px; background:var(--stage)}
+.mock-back p{margin:0 0 .6rem; font-weight:600; font-size:.95rem}
+.mock-back-row{display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-bottom:.7rem}
+.mock-back input{font:400 .95rem var(--body); padding:.6rem .75rem; border-radius:10px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); min-width:0}
+.mock-back .btn{padding:.55rem 1rem; font-size:.92rem}
+@media (max-width:520px){ .mock-back-row{grid-template-columns:1fr} }
 .mock-actions{display:flex; gap:.6rem; flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){ .spin{animation-duration:3s} }
 .product:first-child{grid-row:span 1}
@@ -228,7 +238,7 @@ footer .bar a{text-decoration:none}
     <section class="hero" id="try" aria-label="Preview your pet on our products">
       <div>
         <h1>See your pet on it before you order.</h1>
-        <p class="lede">Upload a photo and preview it as a framed portrait, mug, blanket and keychain. Every piece is made to order from your pet's picture.</p>
+        <p class="lede">Upload a photo and preview it as a canvas, mug, woven blanket and ornament. Every piece is made to order from your pet's picture.</p>
 
         <label class="drop" id="drop">
           <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
@@ -263,18 +273,18 @@ footer .bar a{text-decoration:none}
       <div class="products" id="products">
         <!-- Framed portrait -->
         <figure class="product">
-          <svg viewBox="0 0 400 400" role="img" aria-label="Framed portrait preview">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Canvas preview">
             <defs>
-              <clipPath id="c-portrait"><rect x="104" y="72" width="192" height="256"/></clipPath>
+              <clipPath id="c-portrait"><rect x="96" y="56" width="216" height="288"/></clipPath>
               <filter id="sh1" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1C2440" flood-opacity=".28"/></filter>
             </defs>
-            <rect x="72" y="40" width="256" height="320" rx="3" fill="#2B211B" filter="url(#sh1)"/>
-            <rect x="80" y="48" width="240" height="304" fill="#3A2C22"/>
-            <rect x="88" y="56" width="224" height="288" fill="#FAF9F6"/>
-            <image class="pet" clip-path="url(#c-portrait)" x="104" y="72" width="192" height="256" preserveAspectRatio="xMidYMid slice"/>
+            <rect x="96" y="56" width="216" height="288" fill="#FAF9F6" filter="url(#sh1)"/>
+            <image class="pet" clip-path="url(#c-portrait)" x="96" y="56" width="216" height="288" preserveAspectRatio="xMidYMid slice"/>
+            <path d="M312 56 L322 64 L322 352 L312 344 Z" fill="#000" fill-opacity=".18"/>
+            <path d="M96 344 L312 344 L322 352 L106 352 Z" fill="#000" fill-opacity=".1"/>
           </svg>
-          <figcaption>Framed portrait <span>Canvas or poster</span></figcaption>
-          <button type="button" class="real-btn" data-product="portrait">See the real product</button>
+          <figcaption>Canvas <span>Ready to hang</span></figcaption>
+          <button type="button" class="real-btn" data-product="canvas">See the real product</button>
         </figure>
 
         <!-- Mug -->
@@ -299,13 +309,13 @@ footer .bar a{text-decoration:none}
             <path d="M98 96h184v212c0 20-14 28-30 28H128c-16 0-30-8-30-28Z" fill="url(#g-mug)"/>
             <ellipse cx="190" cy="96" rx="92" ry="10" fill="#DDE1E9"/>
           </svg>
-          <figcaption>Mug <span>11 or 15 oz</span></figcaption>
+          <figcaption>Mug <span>Ceramic</span></figcaption>
           <button type="button" class="real-btn" data-product="mug">See the real product</button>
         </figure>
 
         <!-- Blanket -->
         <figure class="product">
-          <svg viewBox="0 0 400 400" role="img" aria-label="Blanket preview">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Woven blanket preview">
             <defs>
               <clipPath id="c-blanket"><rect x="84" y="84" width="232" height="232" rx="4"/></clipPath>
               <linearGradient id="g-fold" x1="0" y1="0" x2="1" y2="1">
@@ -324,29 +334,34 @@ footer .bar a{text-decoration:none}
               <rect x="72" y="72" width="256" height="256" rx="8" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 5"/>
             </g>
           </svg>
-          <figcaption>Blanket <span>Soft fleece</span></figcaption>
+          <figcaption>Woven blanket <span>Cozy throw</span></figcaption>
           <button type="button" class="real-btn" data-product="blanket">See the real product</button>
         </figure>
 
-        <!-- Keychain -->
+        <!-- Ornament -->
         <figure class="product">
-          <svg viewBox="0 0 400 400" role="img" aria-label="Keychain preview">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Ornament preview">
             <defs>
-              <clipPath id="c-key"><rect x="138" y="150" width="124" height="164" rx="34"/></clipPath>
-              <linearGradient id="g-metal" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#E6E9EF"/><stop offset=".5" stop-color="#9AA2B1"/><stop offset="1" stop-color="#D5DAE3"/>
+              <clipPath id="c-orn"><circle cx="200" cy="232" r="104"/></clipPath>
+              <radialGradient id="g-gloss" cx=".35" cy=".3" r=".75">
+                <stop offset="0" stop-color="#fff" stop-opacity=".45"/>
+                <stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".12"/>
+              </radialGradient>
+              <linearGradient id="g-gold" x1="0" x2="1">
+                <stop offset="0" stop-color="#C9A45C"/><stop offset=".5" stop-color="#F3DFA2"/><stop offset="1" stop-color="#B98F45"/>
               </linearGradient>
-              <filter id="sh4" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#1C2440" flood-opacity=".25"/></filter>
+              <filter id="sh4" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#2E2A45" flood-opacity=".25"/></filter>
             </defs>
-            <circle cx="200" cy="66" r="30" fill="none" stroke="url(#g-metal)" stroke-width="7"/>
-            <rect x="193" y="94" width="14" height="30" rx="7" fill="none" stroke="url(#g-metal)" stroke-width="5"/>
-            <rect x="122" y="118" width="156" height="212" rx="46" fill="#FFFFFF" fill-opacity=".85" stroke="#FFFFFF" stroke-width="2" filter="url(#sh4)"/>
-            <circle cx="200" cy="134" r="7" fill="var(--stage, #E2E8F1)" stroke="#C8CED9"/>
-            <image class="pet" clip-path="url(#c-key)" x="138" y="150" width="124" height="164" preserveAspectRatio="xMidYMid slice"/>
-            <path d="M140 170c10-18 28-24 44-24" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+            <path d="M200 30 C178 30 172 70 200 104 C228 70 222 30 200 30Z" fill="none" stroke="#F2C6D0" stroke-width="5"/>
+            <path d="M200 98 l-26 -14 l4 22 Z M200 98 l26 -14 l-4 22 Z" fill="#F2C6D0"/>
+            <circle cx="200" cy="232" r="116" fill="#FFFFFF" filter="url(#sh4)"/>
+            <image class="pet" clip-path="url(#c-orn)" x="96" y="128" width="208" height="208" preserveAspectRatio="xMidYMid slice"/>
+            <circle cx="200" cy="232" r="116" fill="url(#g-gloss)"/>
+            <rect x="186" y="106" width="28" height="14" rx="4" fill="url(#g-gold)"/>
           </svg>
-          <figcaption>Keychain <span>Clear acrylic</span></figcaption>
-          <button type="button" class="real-btn" data-product="keychain">See the real product</button>
+          <figcaption>Ornament <span>Ceramic</span></figcaption>
+          <button type="button" class="real-btn" data-product="ornament">See the real product</button>
         </figure>
       </div>
     </section>
@@ -368,7 +383,7 @@ footer .bar a{text-decoration:none}
         <li><h3>Order on Etsy</h3><p>Pick your product and style, then upload your favorite photo at checkout.</p></li>
         <li><h3>We make your portrait</h3><p>Your pet's photo becomes custom artwork in the style you chose.</p></li>
         <li><h3>Approve your proof</h3><p>You see the finished design first and can ask for changes before printing.</p></li>
-        <li><h3>Printed and shipped</h3><p>Your keepsake is printed in the U.S. and shipped straight to you.</p></li>
+        <li><h3>Printed and shipped</h3><p>Your keepsake is printed to order and shipped straight to you.</p></li>
       </ol>
     </div>
   </section>
@@ -390,8 +405,17 @@ footer .bar a{text-decoration:none}
       <h3 id="mockTitle">Your product</h3>
       <button type="button" class="x" id="mockClose" aria-label="Close">×</button>
     </div>
+    <div class="mock-opts" id="mockOpts"></div>
     <div class="mock-stage" id="mockStage"></div>
     <div class="mock-thumbs" id="mockThumbs"></div>
+    <div class="mock-back" id="mockBack" hidden>
+      <p>Personalize the back</p>
+      <div class="mock-back-row">
+        <input id="backName" maxlength="24" placeholder="Pet's name, e.g. Bella" aria-label="Pet's name">
+        <input id="backLine" maxlength="32" placeholder="e.g. Christmas 2026" aria-label="Second line">
+      </div>
+      <button type="button" class="btn btn-ghost" id="backApply">Show it on the back</button>
+    </div>
     <p class="mock-note" id="mockNote"></p>
     <div class="mock-actions">
       <a class="btn btn-primary js-etsy" href="#">Order on Etsy</a>
@@ -415,7 +439,7 @@ footer .bar a{text-decoration:none}
   document.getElementById("yr").textContent = new Date().getFullYear();
 
   // Sample pet illustration shown before an upload
-  var sampleSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">' +
+  var sampleSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">' +
     '<rect width="400" height="500" fill="#CFE0EA"/><circle cx="330" cy="80" r="120" fill="#F2DCE4"/>' +
     '<path d="M60 500c10-110 70-160 140-160s130 50 140 160Z" fill="#C98A4B"/>' +
     '<path d="M150 500c5-70 25-110 50-110s45 40 50 110Z" fill="#F6EDE3"/>' +
@@ -515,15 +539,20 @@ footer .bar a{text-decoration:none}
     current = SAMPLE; printSrc = null; photoVersion++; title.textContent = "Upload your pet's photo"; msg.textContent = ""; render(true);
   });
 
-  // ---- Real product mockups from Printify (through the FurMems preview service) ----
-  // Paste your Worker URL here, e.g. "https://furmems-preview.yourname.workers.dev"
   var PREVIEW_API = "https://furmems-preview.furmems.workers.dev";
-  var LABELS = { portrait: "Framed portrait", mug: "Mug", blanket: "Blanket", keychain: "Keychain" };
+  var LABELS = { canvas: "Canvas", mug: "Mug", blanket: "Woven Blanket", ornament: "Ornament" };
+  var CONFIG = null, chosen = {}, currentKey = null;
   var cache = {}, activeReq = 0;
   var dlg = document.getElementById("mockDialog"), stage = document.getElementById("mockStage"),
       thumbs = document.getElementById("mockThumbs"), note = document.getElementById("mockNote"),
-      mTitle = document.getElementById("mockTitle");
-  if (PREVIEW_API) document.documentElement.classList.add("has-api");
+      mTitle = document.getElementById("mockTitle"), opts = document.getElementById("mockOpts"),
+      backBox = document.getElementById("mockBack"), backName = document.getElementById("backName"),
+      backLine = document.getElementById("backLine");
+  var API = PREVIEW_API.replace(/\/$/, "");
+  if (API){
+    document.documentElement.classList.add("has-api");
+    fetch(API + "/products").then(function(r){ return r.json(); }).then(function(d){ CONFIG = d; }).catch(function(){});
+  }
 
   function loadImg(src){
     return new Promise(function(res, rej){ var i = new Image(); i.onload = function(){ res(i); }; i.onerror = rej; i.src = src; });
@@ -538,7 +567,6 @@ footer .bar a{text-decoration:none}
     var src = printSrc || SAMPLE;
     return loadImg(src).then(function(img){
       var w = img.naturalWidth || 1200, h = img.naturalHeight || 1500;
-      if (!printSrc){ w = 1200; h = 1500; }
       var plain = function(){ return { data: toJpeg(img, w, h), styled: !style }; };
       if (!style) return plain();
       var f = document.getElementById(style).outerHTML;
@@ -548,6 +576,38 @@ footer .bar a{text-decoration:none}
       return loadImg("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg))
         .then(function(si){ return { data: toJpeg(si, w, h), styled: true }; })
         .catch(plain);
+    });
+  }
+
+  // Back of the ornament: pet's name and an optional second line on a soft cream background
+  function backImage(variant, name, line){
+    var w = (variant && variant.width) || 900, h = (variant && variant.height) || 900;
+    var heart = variant && /heart/i.test(variant.name);
+    var ready = document.fonts && document.fonts.load ?
+      Promise.all([document.fonts.load('80px "Young Serif"'), document.fonts.load('600 40px "Instrument Sans"')]).catch(function(){}) : Promise.resolve();
+    return ready.then(function(){
+      var c = document.createElement("canvas"); c.width = w; c.height = h;
+      var x = c.getContext("2d");
+      x.fillStyle = "#FBF7F4"; x.fillRect(0, 0, w, h);
+      var cx = w / 2, cy = h * (heart ? 0.42 : 0.5), maxW = w * (heart ? 0.62 : 0.72);
+      // small heart above the name
+      var hs = w * 0.035, hy = cy - h * 0.2;
+      x.fillStyle = "#F0AFAE"; x.beginPath();
+      x.moveTo(cx, hy + hs * 1.4);
+      x.bezierCurveTo(cx - hs * 2.2, hy, cx - hs * 1.2, hy - hs * 1.5, cx, hy - hs * 0.4);
+      x.bezierCurveTo(cx + hs * 1.2, hy - hs * 1.5, cx + hs * 2.2, hy, cx, hy + hs * 1.4);
+      x.fill();
+      x.textAlign = "center"; x.textBaseline = "middle";
+      var size = w * 0.16;
+      x.font = size + 'px "Young Serif", Georgia, serif';
+      while (x.measureText(name).width > maxW && size > 20){ size -= 2; x.font = size + 'px "Young Serif", Georgia, serif'; }
+      x.fillStyle = "#5B4550"; x.fillText(name, cx, cy);
+      if (line){
+        var ls = w * 0.05; x.font = '600 ' + ls + 'px "Instrument Sans", Arial, sans-serif';
+        while (x.measureText(line.toUpperCase()).width > maxW && ls > 12){ ls -= 1; x.font = '600 ' + ls + 'px "Instrument Sans", Arial, sans-serif'; }
+        x.fillStyle = "#B98CA6"; x.fillText(line.toUpperCase(), cx, cy + size * 0.75 + ls * 0.6);
+      }
+      return c.toDataURL("image/jpeg", 0.95);
     });
   }
 
@@ -573,17 +633,38 @@ footer .bar a{text-decoration:none}
       " Your photo is only used to make this preview.";
   }
 
-  function openMockup(key){
-    mTitle.textContent = "Your " + LABELS[key].toLowerCase();
-    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
-    var ck = key + "|" + style + "|" + photoVersion;
+  function productConfig(key){ return CONFIG && CONFIG[key]; }
+  function currentVariant(key){
+    var pc = productConfig(key); if (!pc || !pc.options.length) return null;
+    var id = chosen[key] || pc.default;
+    return pc.options.filter(function(o){ return o.id === id; })[0] || pc.options[0];
+  }
+  function renderOptions(key){
+    var pc = productConfig(key);
+    if (!pc || pc.options.length < 2){ opts.innerHTML = ""; return; }
+    var v = currentVariant(key);
+    opts.innerHTML = '<p>' + pc.optionName + '</p><div class="chips">' + pc.options.map(function(o){
+      return '<button type="button" class="chip" data-v="' + o.id + '" aria-pressed="' + (o.id === v.id) + '">' + o.name + '</button>';
+    }).join("") + '</div>';
+    opts.querySelectorAll(".chip").forEach(function(b){
+      b.addEventListener("click", function(){ chosen[key] = Number(b.dataset.v); renderOptions(key); generate(); });
+    });
+  }
+
+  function generate(){
+    var key = currentKey, pc = productConfig(key), v = currentVariant(key);
+    var name = pc && pc.back ? backName.value.trim() : "", line = pc && pc.back ? backLine.value.trim() : "";
+    var ck = [key, v ? v.id : "", style, photoVersion, name, line].join("|");
     if (cache[ck]) return showMockups(cache[ck]);
     var req = ++activeReq;
-    showWait("Making your " + LABELS[key].toLowerCase() + " with our print partner.<br>This usually takes 10 to 30 seconds.");
-    printImage().then(function(img){
-      return fetch(PREVIEW_API.replace(/\/$/, "") + "/mockup", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product: key, image: img.data.split(",")[1] })
+    var what = (v && pc.options.length > 1 ? v.name + " " : "") + LABELS[key].toLowerCase();
+    showWait("Making your " + what + " with our print partner.<br>This usually takes 10 to 30 seconds.");
+    Promise.all([printImage(), name ? backImage(v, name, line) : Promise.resolve(null)]).then(function(parts){
+      var img = parts[0], back = parts[1];
+      var payload = { product: key, variant: v ? v.id : undefined, image: img.data.split(",")[1] };
+      if (back) payload.backImage = back.split(",")[1];
+      return fetch(API + "/mockup", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
       }).then(function(r){
         return r.json().catch(function(){ return {}; }).then(function(d){
           if (!r.ok || !d.mockups || !d.mockups.length) throw new Error(d.error || "We couldn't make that preview. Please try again.");
@@ -598,6 +679,18 @@ footer .bar a{text-decoration:none}
     });
   }
 
+  function openMockup(key){
+    currentKey = key;
+    mTitle.textContent = "Your " + LABELS[key].toLowerCase();
+    var pc = productConfig(key);
+    backBox.hidden = !(pc && pc.back);
+    renderOptions(key);
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    generate();
+  }
+  document.getElementById("backApply").addEventListener("click", generate);
+  [backName, backLine].forEach(function(i){ i.addEventListener("keydown", function(e){ if (e.key === "Enter") generate(); }); });
+
   document.querySelectorAll(".real-btn").forEach(function(b){
     b.addEventListener("click", function(){ openMockup(b.dataset.product); });
   });
@@ -607,6 +700,16 @@ footer .bar a{text-decoration:none}
   dlg.addEventListener("click", function(e){ if (e.target === dlg) closeDlg(); });
 
   render(false);
+  // Convert the sample illustration to a regular image so it renders consistently everywhere
+  loadImg(SAMPLE).then(function(img){
+    var c = document.createElement("canvas"); c.width = 800; c.height = 1000;
+    c.getContext("2d").drawImage(img, 0, 0, 800, 1000);
+    var raster = c.toDataURL("image/jpeg", 0.92);
+    var wasSample = current === SAMPLE;
+    SAMPLE = raster;
+    document.querySelectorAll("#gallery image").forEach(function(i){ i.setAttribute("href", raster); });
+    if (wasSample){ current = raster; render(false); }
+  }).catch(function(){});
 })();
 </script>
 </body>
