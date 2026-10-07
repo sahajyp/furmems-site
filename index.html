@@ -3,148 +3,179 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FurMems Co. — Custom pet portraits and keepsakes</title>
-<meta name="description" content="Turn your pet's photo into a custom canvas, mug, woven blanket or ornament. Preview it on every product before you order.">
+<title>FurMems Co. — Pastel pet portraits and keepsakes</title>
+<meta name="description" content="Turn your pet's photo into a pastel, watercolor or oil painting portrait on a canvas, mug, woven blanket or ornament. Preview it before you order.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4F1F8; --surface:#FFFFFF; --stage:#E9E3F3; --ink:#2E2A45; --muted:#696482;
-  --line:#DCD5E8; --accent:#F7B9A6; --accent-ink:#2E2A45; --rose:#F2C6D0; --mint:#CFE8DC;
-  --display:"Young Serif", Georgia, "Times New Roman", serif;
-  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bg:#FFF9F4; --surface:#FFFFFF; --stage:#F7EDF1; --ink:#4A3A44; --plum:#5B4550; --muted:#86717D;
+  --line:#EBDDE3; --accent:#F0AFAE; --accent-ink:#4A3A44; --lav:#D9CBEF; --mauve:#B98CA6;
+  --display:"Lora", Georgia, "Times New Roman", serif;
+  --body:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#1D1A2B; --surface:#262238; --stage:#2E2944; --ink:#F2EFF8; --muted:#B3ACCB; --line:#3A3452;
+    --bg:#211A20; --surface:#2B222A; --stage:#342A33; --ink:#F6EEF1; --plum:#F6EEF1; --muted:#C2AEBA; --line:#43363F;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1D1A2B; --surface:#262238; --stage:#2E2944; --ink:#F2EFF8; --muted:#B3ACCB; --line:#3A3452;
+  --bg:#211A20; --surface:#2B222A; --stage:#342A33; --ink:#F6EEF1; --plum:#F6EEF1; --muted:#C2AEBA; --line:#43363F;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth}
-body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); font-size:1.0625rem; line-height:1.55; -webkit-font-smoothing:antialiased}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); font-size:1rem; line-height:1.6; -webkit-font-smoothing:antialiased}
 img,svg{max-width:100%; display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:6px}
 .wrap{max-width:1180px; margin:0 auto; padding:0 1.25rem}
 
-/* Header */
-header{padding:1.25rem 0}
+/* Header and logo lockup */
+header{padding:1.1rem 0}
 .bar{display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap}
-.brand{display:flex; align-items:center; gap:.6rem; text-decoration:none}
-.brand svg{width:34px; height:34px}
-.brand span{font-family:var(--display); font-size:1.45rem; letter-spacing:-.01em}
+.brand{display:flex; align-items:center; gap:.55rem; text-decoration:none; color:var(--plum)}
+.brand svg{width:38px; height:38px}
+.wordmark{font-family:var(--display); font-style:italic; font-weight:700; font-size:1.6rem; letter-spacing:-.01em; line-height:1}
+.wordmark small{font-size:.62em; font-style:normal; font-weight:600; margin-left:.15em}
 nav{display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap}
-nav a{text-decoration:none; color:var(--muted); font-weight:500; font-size:.98rem}
+nav a{text-decoration:none; color:var(--muted); font-weight:500; font-size:.95rem}
 nav a:hover{color:var(--ink)}
 
 .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; border:0; cursor:pointer;
-  font:600 1rem var(--body); padding:.8rem 1.25rem; border-radius:999px; text-decoration:none; transition:transform .15s ease}
-.btn:active{transform:scale(.97)}
+  font:600 .98rem var(--body); padding:.8rem 1.3rem; border-radius:999px; text-decoration:none; transition:transform .15s ease}
 .btn-primary{background:var(--accent); color:var(--accent-ink)}
 .btn-ghost{background:transparent; color:var(--ink); box-shadow:inset 0 0 0 1.5px var(--line)}
-nav .btn{padding:.55rem 1rem; color:var(--accent-ink)}
+nav .btn{padding:.55rem 1.05rem}
 
-/* Hero / studio */
-.hero{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:3rem; align-items:start; padding:2.5rem 0 4.5rem}
-h1{font-family:var(--display); font-weight:400; font-size:clamp(2.4rem,5vw,3.9rem); line-height:1.04; letter-spacing:-.02em; margin:0 0 1.1rem}
-.lede{color:var(--muted); font-size:1.15rem; max-width:34ch; margin:0 0 2rem}
+/* Hero */
+h1{font-family:var(--display); font-weight:600; font-size:clamp(2.3rem,4.6vw,3.6rem); line-height:1.08; letter-spacing:-.02em; margin:0 0 1rem; color:var(--plum)}
+h1 em{font-style:italic; font-weight:700}
+.lede{color:var(--muted); font-size:1.08rem; max-width:38ch; margin:0 0 1.8rem}
 
-.drop{display:block; border:2px dashed var(--line); border-radius:20px; padding:1.4rem; background:var(--surface); cursor:pointer; transition:border-color .2s, background .2s}
+.drop{display:block; border:2px dashed var(--line); border-radius:20px; padding:1.2rem; background:var(--surface); cursor:pointer; transition:border-color .2s}
 .drop:hover,.drop.over{border-color:var(--accent)}
 .drop input{position:absolute; width:1px; height:1px; opacity:0}
 .drop-row{display:flex; align-items:center; gap:1rem}
-.thumb{width:64px; height:64px; border-radius:14px; overflow:hidden; flex:none; background:var(--stage)}
+.thumb{width:60px; height:60px; border-radius:50%; overflow:hidden; flex:none; background:var(--stage)}
 .thumb img{width:100%; height:100%; object-fit:cover}
-.drop strong{display:block; font-size:1.05rem}
-.drop small{color:var(--muted); font-size:.9rem}
+.drop strong{display:block; font-size:1rem; font-weight:600}
+.drop small{color:var(--muted); font-size:.85rem}
 .drop:focus-within{outline:3px solid var(--accent); outline-offset:3px}
-.msg{min-height:1.4em; margin:.6rem 0 0; font-size:.92rem; color:#B3413A}
-:root[data-theme="dark"] .msg{color:var(--rose)}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .msg{color:var(--rose)} }
+.msg{min-height:1.4em; margin:.5rem 0 0; font-size:.9rem; color:#B3413A}
 
-fieldset{border:0; padding:0; margin:1.6rem 0 0}
-legend{font-weight:600; margin-bottom:.7rem; padding:0}
+fieldset{border:0; padding:0; margin:1.4rem 0 0}
+legend{font-weight:600; margin-bottom:.6rem; padding:0}
 .chips{display:flex; flex-wrap:wrap; gap:.5rem}
-.chip{font:500 .95rem var(--body); padding:.55rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
-.note{color:var(--muted); font-size:.88rem; margin:1.2rem 0 1.6rem; max-width:44ch}
+.chip{font:500 .92rem var(--body); padding:.5rem 1rem; border-radius:999px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; display:inline-flex; align-items:center; gap:.4rem}
+.chip[aria-pressed="true"]{background:var(--plum); color:var(--bg); border-color:var(--plum)}
+.tag{font-size:.7rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; background:#F6B26B; color:#3B2430; border-radius:999px; padding:.1rem .45rem}
+.note{color:var(--muted); font-size:.85rem; margin:1.1rem 0 1.4rem; max-width:46ch}
 .actions{display:flex; gap:.7rem; flex-wrap:wrap}
 
+/* Portrait slideshow: wide rounded square */
+.intro{padding:1.6rem 0 1.4rem; text-align:center}
+#try{padding-bottom:3.5rem}
+.intro .lede{margin:0 auto; max-width:56ch}
+.show{width:100%; margin:0 auto}
+.stage-wrap{position:relative}
+.frame{position:relative; width:100%; aspect-ratio:16/9; max-height:64vh; border-radius:36px; overflow:hidden;
+  background:var(--stage); box-shadow:0 0 0 6px var(--lav), 0 30px 60px -30px rgba(74,58,68,.45); cursor:pointer}
+.frame svg{position:absolute; inset:0; width:100%; height:100%}
+.slide{opacity:0; transition:opacity .9s ease}
+.slide.on{opacity:1}
+.arrow{position:absolute; top:50%; translate:0 -50%; z-index:2; width:3rem; height:3rem; border-radius:50%; border:1.5px solid var(--line);
+  background:var(--surface); color:var(--ink); font-size:1.4rem; line-height:1; cursor:pointer; box-shadow:0 8px 20px -10px rgba(74,58,68,.4)}
+#prev{left:1rem} #next{right:1rem}
+.show-foot{display:flex; flex-direction:column; align-items:center; gap:.5rem; margin-top:1.3rem; text-align:center}
+.show-foot h2{font-family:var(--display); font-style:italic; font-weight:700; font-size:1.6rem; margin:0; color:var(--plum)}
+.show-foot p{margin:0; color:var(--muted); font-size:.95rem}
+.dots{display:flex; gap:.6rem; margin-top:.3rem}
+.dot{width:12px; height:12px; border-radius:50%; border:0; background:var(--line); cursor:pointer; padding:0}
+.dot[aria-current="true"]{background:var(--accent); transform:scale(1.25)}
+
+/* Studio: photo input left, products right */
+.studio{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:3rem; align-items:start}
+
+/* Hover pop for every pill and circle control */
+.btn,.chip,.real-btn,.arrow,.dot,.social a,.x{transition:transform .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease}
+@media (hover:hover){
+  .btn:hover,.chip:hover,.real-btn:hover,.arrow:hover,.social a:hover,.x:hover{
+    transform:scale(1.07); background:#FCDDE3; color:#4A3A44; border-color:#F4BCC8; box-shadow:0 10px 22px -12px rgba(240,175,174,.9)}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1.5px #F4BCC8, 0 10px 22px -12px rgba(240,175,174,.9)}
+  .dot:hover{transform:scale(1.5); background:#FCDDE3}
+  .dot[aria-current="true"]:hover{background:#FCDDE3}
+}
+.btn:active,.chip:active,.real-btn:active,.arrow:active,.x:active{transform:scale(.96)}
+
+/* Products */
+section.block{padding:4.5rem 0; border-top:1px solid var(--line)}
+h2.sec{font-family:var(--display); font-weight:600; font-size:clamp(1.8rem,3.2vw,2.4rem); line-height:1.15; letter-spacing:-.015em; margin:0 0 .6rem; color:var(--plum)}
+.sub{color:var(--muted); max-width:52ch; margin:0 0 2.2rem}
 .products{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem}
-.product{background:var(--stage); border-radius:24px; padding:.8rem .8rem 1rem; margin:0}
+.product{background:var(--stage); border-radius:24px; padding:.8rem .8rem 1rem; margin:0; display:flex; flex-direction:column}
 .product svg{width:100%; height:auto; aspect-ratio:1}
-.product figcaption{display:flex; justify-content:space-between; align-items:baseline; padding:0 .5rem; font-weight:600}
-.product figcaption span{color:var(--muted); font-weight:400; font-size:.9rem}
-.real-btn{display:none; margin:.7rem .5rem 0; font:600 .9rem var(--body); color:var(--ink); background:var(--surface);
-  border:1.5px solid var(--line); border-radius:999px; padding:.5rem .9rem; cursor:pointer}
-.real-btn:hover{border-color:var(--ink)}
+.product figcaption{display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; padding:0 .4rem; font-weight:600}
+.product figcaption span{color:var(--muted); font-weight:400; font-size:.85rem; text-align:right}
+.real-btn{display:none; align-self:flex-start; margin:.7rem .4rem 0; font:600 .85rem var(--body); color:var(--ink); background:var(--surface);
+  border:1.5px solid var(--line); border-radius:999px; padding:.45rem .85rem; cursor:pointer}
 .has-api .real-btn{display:inline-flex}
+.pop{animation:pop .45s ease}
+@keyframes pop{from{opacity:.35; transform:scale(.97)} to{opacity:1; transform:none}}
+
+.steps{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2rem; counter-reset:s}
+.steps li{counter-increment:s}
+.steps li::before{content:counter(s); display:grid; place-items:center; width:2.6rem; height:2.6rem; border-radius:50%;
+  background:var(--accent); color:var(--accent-ink); font-family:var(--display); font-weight:600; font-size:1.15rem; margin-bottom:1rem}
+.steps h3{font-size:1.02rem; margin:0 0 .3rem}
+.steps p{color:var(--muted); margin:0; font-size:.93rem}
+.closing{display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap}
+
+footer{padding:2.5rem 0 3rem; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line)}
+.foot{display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap}
+.social{display:flex; gap:.8rem; align-items:center}
+.social a{display:inline-flex; align-items:center; gap:.55rem; text-decoration:none; color:var(--ink); font-weight:500;
+  padding:.45rem .9rem .45rem .5rem; border-radius:999px; border:1.5px solid var(--line); background:var(--surface)}
+.social img{width:28px; height:28px; border-radius:8px}
+
+/* Mockup dialog */
 dialog.mock{border:0; border-radius:24px; padding:0; width:min(560px, calc(100vw - 2rem)); max-height:calc(100dvh - 2rem);
-  background:var(--surface); color:var(--ink); box-shadow:0 30px 80px -20px rgba(46,42,69,.45)}
-dialog.mock::backdrop{background:rgba(30,26,43,.45)}
+  background:var(--surface); color:var(--ink); box-shadow:0 30px 80px -20px rgba(74,58,68,.45)}
+dialog.mock::backdrop{background:rgba(40,28,36,.45)}
 .mock-body{padding:1.4rem; overflow:auto; max-height:calc(100dvh - 2rem)}
 .mock-head{display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem}
-.mock-head h3{font-family:var(--display); font-weight:400; font-size:1.5rem; margin:0}
+.mock-head h3{font-family:var(--display); font-style:italic; font-weight:700; font-size:1.5rem; margin:0; color:var(--plum)}
 .x{border:0; background:var(--stage); color:var(--ink); width:2.4rem; height:2.4rem; border-radius:50%; font-size:1.3rem; cursor:pointer}
+.mock-opts{margin:0 0 1rem}
+.mock-opts p{margin:0 0 .5rem; font-weight:600; font-size:.92rem}
+.mock-opts .chips{gap:.4rem}
+.mock-opts .chip{padding:.4rem .85rem; font-size:.88rem}
 .mock-stage{aspect-ratio:1; border-radius:16px; background:var(--stage); display:grid; place-items:center; overflow:hidden}
 .mock-stage img{width:100%; height:100%; object-fit:contain}
-.mock-wait{text-align:center; padding:1.5rem; color:var(--muted); font-size:.98rem}
+.mock-wait{text-align:center; padding:1.5rem; color:var(--muted); font-size:.95rem}
 .spin{width:38px; height:38px; margin:0 auto 1rem; border-radius:50%; border:4px solid var(--line); border-top-color:var(--accent); animation:sp 1s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 .mock-thumbs{display:flex; gap:.5rem; margin-top:.7rem}
 .mock-thumbs button{padding:0; border:2px solid transparent; border-radius:10px; overflow:hidden; width:64px; height:64px; background:var(--stage); cursor:pointer}
 .mock-thumbs button[aria-pressed="true"]{border-color:var(--ink)}
 .mock-thumbs img{width:100%; height:100%; object-fit:cover}
-.mock-note{color:var(--muted); font-size:.88rem; margin:1rem 0}
-.mock-opts{margin:0 0 1rem}
-.mock-opts p{margin:0 0 .5rem; font-weight:600; font-size:.95rem}
-.mock-opts .chips{gap:.4rem}
-.mock-opts .chip{padding:.45rem .85rem; font-size:.9rem}
 .mock-back{margin-top:1rem; padding:1rem; border-radius:16px; background:var(--stage)}
-.mock-back p{margin:0 0 .6rem; font-weight:600; font-size:.95rem}
+.mock-back p{margin:0 0 .6rem; font-weight:600; font-size:.92rem}
 .mock-back-row{display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-bottom:.7rem}
-.mock-back input{font:400 .95rem var(--body); padding:.6rem .75rem; border-radius:10px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); min-width:0}
-.mock-back .btn{padding:.55rem 1rem; font-size:.92rem}
-@media (max-width:520px){ .mock-back-row{grid-template-columns:1fr} }
+.mock-back input{font:400 .92rem var(--body); padding:.6rem .75rem; border-radius:10px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); min-width:0}
+.mock-back .btn{padding:.5rem 1rem; font-size:.9rem}
+.mock-note{color:var(--muted); font-size:.85rem; margin:1rem 0}
 .mock-actions{display:flex; gap:.6rem; flex-wrap:wrap}
-@media (prefers-reduced-motion:reduce){ .spin{animation-duration:3s} }
-.product:first-child{grid-row:span 1}
-.pop{animation:pop .45s ease}
-@keyframes pop{from{opacity:.35; transform:scale(.97)} to{opacity:1; transform:none}}
-@media (prefers-reduced-motion:reduce){ .pop{animation:none} html{scroll-behavior:auto} .btn{transition:none} }
 
-/* Sections */
-section.block{padding:4.5rem 0; border-top:1px solid var(--line)}
-h2{font-family:var(--display); font-weight:400; font-size:clamp(1.9rem,3.4vw,2.6rem); line-height:1.1; letter-spacing:-.015em; margin:0 0 .8rem}
-.sub{color:var(--muted); max-width:52ch; margin:0 0 2.5rem}
-
-.steps{list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:2rem; counter-reset:s}
-.steps li{counter-increment:s}
-.steps li::before{content:counter(s); display:grid; place-items:center; width:2.6rem; height:2.6rem; border-radius:50%;
-  background:var(--accent); color:var(--accent-ink); font-family:var(--display); font-size:1.2rem; margin-bottom:1rem}
-.steps h3{font-size:1.1rem; margin:0 0 .35rem}
-.steps p{color:var(--muted); margin:0; font-size:.98rem}
-
-.gallery{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.25rem}
-.gallery figure{margin:0}
-.gallery svg{width:100%; height:auto; border-radius:6px; background:var(--surface); box-shadow:0 18px 30px -18px rgba(46,42,69,.35)}
-.gallery figcaption{margin-top:.8rem; font-weight:600}
-.gallery figcaption span{display:block; color:var(--muted); font-weight:400; font-size:.92rem}
-
-.closing{display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap}
-footer{padding:2.5rem 0 3rem; color:var(--muted); font-size:.92rem; border-top:1px solid var(--line)}
-footer .bar a{text-decoration:none}
-
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr; gap:2.2rem; padding-top:1.5rem}
+@media (prefers-reduced-motion:reduce){ .pop{animation:none} .slide{transition:none} .btn,.chip,.real-btn,.arrow,.dot,.social a,.x{transition:none} html{scroll-behavior:auto} .spin{animation-duration:3s} }
+@media (max-width:960px){
+  .studio{grid-template-columns:1fr; gap:2.2rem}
+  .frame{aspect-ratio:1; max-height:none; border-radius:28px}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
   .lede{max-width:none}
 }
 @media (max-width:520px){
@@ -153,25 +184,17 @@ footer .bar a{text-decoration:none}
   .product{padding:.5rem .5rem .8rem; border-radius:18px}
   .product figcaption span{display:none}
   .steps{grid-template-columns:1fr}
+  .mock-back-row{grid-template-columns:1fr}
+  .arrow{width:2.5rem; height:2.5rem; font-size:1.2rem}
+  #prev{left:.6rem} #next{right:.6rem}
 }
 </style>
 </head>
 <body>
 
-<!-- Shared SVG filters for the art styles -->
+<!-- Shared style filters and Halloween decorations -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <filter id="f-watercolor" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="4" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
-      <feGaussianBlur in="d" stdDeviation="1.1" result="b"/>
-      <feColorMatrix in="b" type="saturate" values="1.3" result="s"/>
-      <feComponentTransfer in="s">
-        <feFuncR type="linear" slope=".82" intercept=".18"/>
-        <feFuncG type="linear" slope=".82" intercept=".18"/>
-        <feFuncB type="linear" slope=".82" intercept=".18"/>
-      </feComponentTransfer>
-    </filter>
     <filter id="f-pastel" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="2" result="grain"/>
       <feDisplacementMap in="SourceGraphic" in2="grain" scale="4" xChannelSelector="R" yChannelSelector="G" result="d"/>
@@ -183,6 +206,17 @@ footer .bar a{text-decoration:none}
         <feFuncB type="linear" slope=".62" intercept=".38"/>
       </feComponentTransfer>
     </filter>
+    <filter id="f-watercolor" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="1.1" result="b"/>
+      <feColorMatrix in="b" type="saturate" values="1.3" result="s"/>
+      <feComponentTransfer in="s">
+        <feFuncR type="linear" slope=".82" intercept=".18"/>
+        <feFuncG type="linear" slope=".82" intercept=".18"/>
+        <feFuncB type="linear" slope=".82" intercept=".18"/>
+      </feComponentTransfer>
+    </filter>
     <filter id="f-oil" color-interpolation-filters="sRGB">
       <feGaussianBlur stdDeviation="1.4" result="b"/>
       <feComponentTransfer in="b" result="p">
@@ -192,41 +226,60 @@ footer .bar a{text-decoration:none}
       </feComponentTransfer>
       <feColorMatrix in="p" type="saturate" values="1.35"/>
     </filter>
-    <filter id="f-pop" color-interpolation-filters="sRGB">
-      <feColorMatrix type="saturate" values="2.4" result="s"/>
-      <feComponentTransfer in="s">
-        <feFuncR type="discrete" tableValues="0.1 .55 1"/>
-        <feFuncG type="discrete" tableValues="0.05 .5 .95"/>
-        <feFuncB type="discrete" tableValues="0.25 .6 1"/>
+    <filter id="f-halloween" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="1.2" result="soft"/>
+      <feColorMatrix in="soft" type="saturate" values="1.5" result="sat"/>
+      <feComponentTransfer in="sat" result="poster">
+        <feFuncR type="discrete" tableValues=".05 .35 .7 1"/>
+        <feFuncG type="discrete" tableValues=".02 .3 .62 .95"/>
+        <feFuncB type="discrete" tableValues=".1 .35 .6 .9"/>
       </feComponentTransfer>
-    </filter>
-    <filter id="f-sketch" color-interpolation-filters="sRGB">
-      <feColorMatrix type="saturate" values="0" result="g"/>
-      <feConvolveMatrix in="g" order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" preserveAlpha="true" result="e"/>
-      <feComponentTransfer in="e" result="a">
-        <feFuncR type="linear" slope="3.2"/><feFuncG type="linear" slope="3.2"/><feFuncB type="linear" slope="3.2"/>
+      <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="gray"/>
+      <feConvolveMatrix in="gray" order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" preserveAlpha="true" result="edge"/>
+      <feComponentTransfer in="edge" result="lines">
+        <feFuncR type="linear" slope="-4" intercept="1"/>
+        <feFuncG type="linear" slope="-4" intercept="1"/>
+        <feFuncB type="linear" slope="-4" intercept="1"/>
       </feComponentTransfer>
-      <feColorMatrix in="a" type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/>
+      <feBlend in="poster" in2="lines" mode="multiply"/>
     </filter>
+    <radialGradient id="g-hw-vig" cx=".5" cy=".45" r=".62">
+      <stop offset=".4" stop-color="#3B1F4A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#3B1F4A" stop-opacity=".72"/>
+    </radialGradient>
+    <radialGradient id="g-pump" cx=".4" cy=".35" r=".75">
+      <stop offset="0" stop-color="#FFB15C"/><stop offset="1" stop-color="#E06A1B"/>
+    </radialGradient>
+    <symbol id="s-bat" viewBox="0 0 100 40">
+      <path d="M0 18 Q10 2 24 12 Q30 0 38 10 Q44 4 50 14 Q56 4 62 10 Q70 0 76 12 Q90 2 100 18 Q88 16 80 26 Q72 20 64 28 Q57 22 50 32 Q43 22 36 28 Q28 20 20 26 Q12 16 0 18Z" fill="#2B1A2E"/>
+    </symbol>
+    <symbol id="s-pumpkin" viewBox="0 0 100 90">
+      <rect x="45" y="2" width="10" height="18" rx="3" fill="#5E7B3A"/>
+      <ellipse cx="30" cy="55" rx="28" ry="33" fill="url(#g-pump)"/>
+      <ellipse cx="70" cy="55" rx="28" ry="33" fill="url(#g-pump)"/>
+      <ellipse cx="50" cy="55" rx="30" ry="35" fill="url(#g-pump)"/>
+      <path d="M32 45 L42 45 L37 35Z M58 45 L68 45 L63 35Z" fill="#2B1A2E"/>
+      <path d="M30 62 Q50 80 70 62 L64 66 L58 61 L52 67 L46 61 L40 67 L34 62Z" fill="#2B1A2E"/>
+    </symbol>
   </defs>
 </svg>
 
 <header>
   <div class="wrap bar">
     <a class="brand" href="#top" aria-label="FurMems Co. home">
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <circle cx="20" cy="6" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/>
-        <path d="M20 10 C31 10 34 18 34 24 C34 32 28 37 20 37 C12 37 6 32 6 24 C6 18 9 10 20 10Z" fill="#F7B9A6"/>
-        <circle cx="20" cy="15.5" r="1.8" fill="#1C2440"/>
-        <path d="M14.5 25.5c0-1.6 1.2-2.6 2.2-2.6s2 .8 3.3.8 2.3-.8 3.3-.8 2.2 1 2.2 2.6c0 2.6-3.2 4.3-5.5 4.3s-5.5-1.7-5.5-4.3Z" fill="#1C2440"/>
-        <circle cx="15.2" cy="20.5" r="1.6" fill="#1C2440"/><circle cx="24.8" cy="20.5" r="1.6" fill="#1C2440"/>
-        <circle cx="18.6" cy="19" r="1.4" fill="#1C2440"/><circle cx="21.4" cy="19" r="1.4" fill="#1C2440"/>
+      <svg viewBox="0 0 100 96" aria-hidden="true">
+        <path d="M50 92 L9 46 A25 25 0 0 1 50 14 A25 25 0 0 1 91 46 Z" fill="#F0AFAE"/>
+        <ellipse cx="31" cy="44" rx="6" ry="8" transform="rotate(-22 31 44)" fill="#FFF9F4"/>
+        <ellipse cx="44" cy="36" rx="6" ry="8" transform="rotate(-6 44 36)" fill="#FFF9F4"/>
+        <ellipse cx="56" cy="36" rx="6" ry="8" transform="rotate(6 56 36)" fill="#FFF9F4"/>
+        <ellipse cx="69" cy="44" rx="6" ry="8" transform="rotate(22 69 44)" fill="#FFF9F4"/>
+        <path d="M50 49 C62 49 67 58 66 63 C65 69 58 70 50 68 C42 70 35 69 34 63 C33 58 38 49 50 49Z" fill="#FFF9F4"/>
       </svg>
-      <span>FurMems Co.</span>
+      <span class="wordmark">FurMems<small>Co.</small></span>
     </a>
     <nav aria-label="Main">
-      <a href="#try">Try it</a>
-      <a href="#styles">Styles</a>
+      <a href="#try">Styles</a>
+      <a href="#products">Products</a>
       <a href="#how">How it works</a>
       <a class="btn btn-primary js-etsy" href="#">Shop on Etsy</a>
     </nav>
@@ -234,19 +287,46 @@ footer .bar a{text-decoration:none}
 </header>
 
 <main id="top">
-  <div class="wrap">
-    <section class="hero" id="try" aria-label="Preview your pet on our products">
-      <div>
-        <h1>See your pet on it before you order.</h1>
-        <p class="lede">Upload a photo and preview it as a canvas, mug, woven blanket and ornament. Every piece is made to order from your pet's picture.</p>
+  <section class="wrap" id="try" aria-label="Your pet in each style">
+    <div class="intro">
+      <h1>Your pet, painted as a <em>keepsake</em>.</h1>
+      <p class="lede">Upload a photo below to see your pet in pastel, watercolor and oil paint, then on a canvas, mug, woven blanket or ornament.</p>
+    </div>
+    <div class="show" aria-roledescription="carousel" aria-label="Your pet in each style">
+      <div class="stage-wrap">
+      <div class="frame" id="frame" title="Use this style">
+        <svg id="showSvg" preserveAspectRatio="none">
+          <defs>
+            <filter id="f-blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="22"/></filter>
+            <clipPath id="c-art"><rect id="c-art-r"/></clipPath>
+            <filter id="sh-art" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#4A3A44" flood-opacity=".35"/></filter>
+          </defs>
+          <g id="slides"></g>
+        </svg>
+      </div>
+      <button type="button" class="arrow" id="prev" aria-label="Previous style">‹</button>
+      <button type="button" class="arrow" id="next" aria-label="Next style">›</button>
+      </div>
+      <div class="show-foot">
+        <h2 id="capTitle"></h2>
+        <p id="capText"></p>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+  </section>
 
+  <section class="block" id="products" aria-labelledby="products-h">
+    <div class="wrap studio">
+      <div>
+        <h2 class="sec" id="products-h">Try it with your pet</h2>
+        <p class="sub">Showing your pet in <strong id="styleName">pastel painting</strong>. Tap <strong>See the real product</strong> for a true-to-life photo from our print partner.</p>
         <label class="drop" id="drop">
           <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
           <div class="drop-row">
             <div class="thumb"><img id="thumb" alt=""></div>
             <div>
               <strong id="dropTitle">Upload your pet's photo</strong>
-              <small>Drag it here or tap to choose. JPG, PNG or WebP. Instant previews stay on your device.</small>
+              <small>Drag it here or tap to choose. JPG, PNG or WebP. Style previews stay on your device.</small>
             </div>
           </div>
         </label>
@@ -254,134 +334,109 @@ footer .bar a{text-decoration:none}
 
         <fieldset>
           <legend>Pick a style</legend>
-          <div class="chips" id="chips">
-            <button type="button" class="chip" data-style="f-pastel" aria-pressed="true">Pastel painting</button>
-            <button type="button" class="chip" data-style="f-watercolor" aria-pressed="false">Watercolor</button>
-            <button type="button" class="chip" data-style="f-oil" aria-pressed="false">Oil paint</button>
-            <button type="button" class="chip" data-style="f-sketch" aria-pressed="false">Pencil sketch</button>
-            <button type="button" class="chip" data-style="" aria-pressed="false">Original photo</button>
-          </div>
+          <div class="chips" id="chips"></div>
         </fieldset>
 
-        <p class="note">These are instant previews. Tap <strong>See the real product</strong> on any item for a true-to-life photo of it with your pet. Your finished portrait is custom made, and you approve a proof before anything is printed.</p>
+        <p class="note">These are quick style previews. Your finished portrait is custom made from your photo, and you approve a proof before anything is printed.</p>
         <div class="actions">
-          <a class="btn btn-primary js-etsy" href="#">Order on Etsy</a>
           <button type="button" class="btn btn-ghost" id="reset">Use the sample pet</button>
         </div>
-      </div>
 
-      <div class="products" id="products">
-        <!-- Framed portrait -->
+      </div>
+      <div class="products" id="productGrid">
         <figure class="product">
           <svg viewBox="0 0 400 400" role="img" aria-label="Canvas preview">
             <defs>
-              <clipPath id="c-portrait"><rect x="96" y="56" width="216" height="288"/></clipPath>
-              <filter id="sh1" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1C2440" flood-opacity=".28"/></filter>
+              <clipPath id="c-canvas"><rect x="96" y="56" width="216" height="288"/></clipPath>
+              <filter id="sh1" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#4A3A44" flood-opacity=".25"/></filter>
             </defs>
             <rect x="96" y="56" width="216" height="288" fill="#FAF9F6" filter="url(#sh1)"/>
-            <image class="pet" clip-path="url(#c-portrait)" x="96" y="56" width="216" height="288" preserveAspectRatio="xMidYMid slice"/>
+            <g class="art" clip-path="url(#c-canvas)" data-x="96" data-y="56" data-w="216" data-h="288"></g>
             <path d="M312 56 L322 64 L322 352 L312 344 Z" fill="#000" fill-opacity=".18"/>
             <path d="M96 344 L312 344 L322 352 L106 352 Z" fill="#000" fill-opacity=".1"/>
           </svg>
-          <figcaption>Canvas <span>Ready to hang</span></figcaption>
+          <figcaption>Canvas <span>4 sizes</span></figcaption>
           <button type="button" class="real-btn" data-product="canvas">See the real product</button>
         </figure>
 
-        <!-- Mug -->
         <figure class="product">
           <svg viewBox="0 0 400 400" role="img" aria-label="Mug preview">
             <defs>
               <clipPath id="c-mug"><rect x="118" y="120" width="140" height="160" rx="10"/></clipPath>
               <linearGradient id="g-mug" x1="0" x2="1">
-                <stop offset="0" stop-color="#000" stop-opacity=".22"/>
-                <stop offset=".22" stop-color="#000" stop-opacity="0"/>
-                <stop offset=".42" stop-color="#fff" stop-opacity=".35"/>
-                <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
+                <stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset=".22" stop-color="#000" stop-opacity="0"/>
+                <stop offset=".42" stop-color="#fff" stop-opacity=".35"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/>
                 <stop offset="1" stop-color="#000" stop-opacity=".26"/>
               </linearGradient>
-              <filter id="sh2" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1C2440" flood-opacity=".25"/></filter>
+              <filter id="sh2" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#4A3A44" flood-opacity=".22"/></filter>
             </defs>
-            <ellipse cx="190" cy="336" rx="110" ry="12" fill="#1C2440" opacity=".12"/>
-            <path d="M282 150c58-4 62 96 0 96" fill="none" stroke="#F4F5F8" stroke-width="20" stroke-linecap="round"/>
-            <path d="M282 150c58-4 62 96 0 96" fill="none" stroke="#000" stroke-opacity=".08" stroke-width="20" stroke-linecap="round"/>
-            <path d="M98 96h184v212c0 20-14 28-30 28H128c-16 0-30-8-30-28Z" fill="#F4F5F8" filter="url(#sh2)"/>
-            <image class="pet" clip-path="url(#c-mug)" x="118" y="120" width="140" height="160" preserveAspectRatio="xMidYMid slice"/>
+            <ellipse cx="190" cy="336" rx="110" ry="12" fill="#4A3A44" opacity=".12"/>
+            <path d="M282 150c58-4 62 96 0 96" fill="none" stroke="#F4B8C4" stroke-width="20" stroke-linecap="round"/>
+            <path d="M98 96h184v212c0 20-14 28-30 28H128c-16 0-30-8-30-28Z" fill="#F7F5F6" filter="url(#sh2)"/>
+            <g class="art" clip-path="url(#c-mug)" data-x="118" data-y="120" data-w="140" data-h="160"></g>
             <path d="M98 96h184v212c0 20-14 28-30 28H128c-16 0-30-8-30-28Z" fill="url(#g-mug)"/>
-            <ellipse cx="190" cy="96" rx="92" ry="10" fill="#DDE1E9"/>
+            <ellipse cx="190" cy="96" rx="92" ry="10" fill="#F4B8C4"/>
           </svg>
-          <figcaption>Mug <span>Ceramic</span></figcaption>
+          <figcaption>Mug <span>4 colors</span></figcaption>
           <button type="button" class="real-btn" data-product="mug">See the real product</button>
         </figure>
 
-        <!-- Blanket -->
         <figure class="product">
           <svg viewBox="0 0 400 400" role="img" aria-label="Woven blanket preview">
             <defs>
               <clipPath id="c-blanket"><rect x="84" y="84" width="232" height="232" rx="4"/></clipPath>
               <linearGradient id="g-fold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#fff" stop-opacity=".18"/>
-                <stop offset=".3" stop-color="#000" stop-opacity=".12"/>
-                <stop offset=".45" stop-color="#fff" stop-opacity=".14"/>
-                <stop offset=".7" stop-color="#000" stop-opacity=".1"/>
+                <stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".3" stop-color="#000" stop-opacity=".12"/>
+                <stop offset=".45" stop-color="#fff" stop-opacity=".14"/><stop offset=".7" stop-color="#000" stop-opacity=".1"/>
                 <stop offset="1" stop-color="#fff" stop-opacity=".12"/>
               </linearGradient>
-              <filter id="sh3" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#1C2440" flood-opacity=".25"/></filter>
+              <filter id="sh3" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#4A3A44" flood-opacity=".22"/></filter>
             </defs>
             <g transform="rotate(-5 200 200)">
               <rect x="64" y="64" width="272" height="272" rx="10" fill="#F1ECE6" filter="url(#sh3)"/>
-              <image class="pet" clip-path="url(#c-blanket)" x="84" y="84" width="232" height="232" preserveAspectRatio="xMidYMid slice"/>
+              <g class="art" clip-path="url(#c-blanket)" data-x="84" data-y="84" data-w="232" data-h="232"></g>
               <rect x="64" y="64" width="272" height="272" rx="10" fill="url(#g-fold)"/>
               <rect x="72" y="72" width="256" height="256" rx="8" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 5"/>
             </g>
           </svg>
-          <figcaption>Woven blanket <span>Cozy throw</span></figcaption>
+          <figcaption>Woven blanket <span>2 sizes</span></figcaption>
           <button type="button" class="real-btn" data-product="blanket">See the real product</button>
         </figure>
 
-        <!-- Ornament -->
         <figure class="product">
           <svg viewBox="0 0 400 400" role="img" aria-label="Ornament preview">
             <defs>
               <clipPath id="c-orn"><circle cx="200" cy="232" r="104"/></clipPath>
               <radialGradient id="g-gloss" cx=".35" cy=".3" r=".75">
-                <stop offset="0" stop-color="#fff" stop-opacity=".45"/>
-                <stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+                <stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/>
                 <stop offset="1" stop-color="#000" stop-opacity=".12"/>
               </radialGradient>
               <linearGradient id="g-gold" x1="0" x2="1">
                 <stop offset="0" stop-color="#C9A45C"/><stop offset=".5" stop-color="#F3DFA2"/><stop offset="1" stop-color="#B98F45"/>
               </linearGradient>
-              <filter id="sh4" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#2E2A45" flood-opacity=".25"/></filter>
+              <filter id="sh4" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#4A3A44" flood-opacity=".22"/></filter>
             </defs>
-            <path d="M200 30 C178 30 172 70 200 104 C228 70 222 30 200 30Z" fill="none" stroke="#F2C6D0" stroke-width="5"/>
-            <path d="M200 98 l-26 -14 l4 22 Z M200 98 l26 -14 l-4 22 Z" fill="#F2C6D0"/>
+            <path d="M200 30 C178 30 172 70 200 104 C228 70 222 30 200 30Z" fill="none" stroke="#F0AFAE" stroke-width="5"/>
+            <path d="M200 98 l-26 -14 l4 22 Z M200 98 l26 -14 l-4 22 Z" fill="#F0AFAE"/>
             <circle cx="200" cy="232" r="116" fill="#FFFFFF" filter="url(#sh4)"/>
-            <image class="pet" clip-path="url(#c-orn)" x="96" y="128" width="208" height="208" preserveAspectRatio="xMidYMid slice"/>
+            <g class="art" clip-path="url(#c-orn)" data-x="96" data-y="128" data-w="208" data-h="208"></g>
             <circle cx="200" cy="232" r="116" fill="url(#g-gloss)"/>
             <rect x="186" y="106" width="28" height="14" rx="4" fill="url(#g-gold)"/>
           </svg>
-          <figcaption>Ornament <span>Ceramic</span></figcaption>
+          <figcaption>Ornament <span>Round or heart</span></figcaption>
           <button type="button" class="real-btn" data-product="ornament">See the real product</button>
         </figure>
       </div>
-    </section>
-  </div>
-
-  <section class="block" id="styles" aria-labelledby="styles-h">
-    <div class="wrap">
-      <h2 id="styles-h">Soft pastel portraits, made from your photo</h2>
-      <p class="sub">Pastel painting is our signature look. Prefer something else? Choose watercolor, oil paint or pencil sketch. You approve a proof of every design.</p>
-      <div class="gallery" id="gallery"></div>
     </div>
   </section>
 
   <section class="block" id="how" aria-labelledby="how-h">
     <div class="wrap">
-      <h2 id="how-h">How it works</h2>
+      <h2 class="sec" id="how-h">How it works</h2>
       <p class="sub">From your camera roll to your door in four steps.</p>
       <ol class="steps">
-        <li><h3>Order on Etsy</h3><p>Pick your product and style, then upload your favorite photo at checkout.</p></li>
-        <li><h3>We make your portrait</h3><p>Your pet's photo becomes custom artwork in the style you chose.</p></li>
+        <li><h3>Order on Etsy</h3><p>Pick your product and style, then send us your favorite photo.</p></li>
+        <li><h3>We paint your portrait</h3><p>Your pet's photo becomes custom artwork in the style you chose.</p></li>
         <li><h3>Approve your proof</h3><p>You see the finished design first and can ask for changes before printing.</p></li>
         <li><h3>Printed and shipped</h3><p>Your keepsake is printed to order and shipped straight to you.</p></li>
       </ol>
@@ -391,13 +446,26 @@ footer .bar a{text-decoration:none}
   <section class="block" aria-labelledby="cta-h">
     <div class="wrap closing">
       <div>
-        <h2 id="cta-h">Ready to make one?</h2>
-        <p class="sub" style="margin:0">Order on Etsy with buyer protection and secure checkout.</p>
+        <h2 class="sec" id="cta-h">Ready to make one?</h2>
+        <p class="sub" style="margin:0">Order on Etsy with secure checkout and buyer protection.</p>
       </div>
       <a class="btn btn-primary js-etsy" href="#">Shop FurMems Co. on Etsy</a>
     </div>
   </section>
 </main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr"></span> FurMems Co. Pastel pet memories.</span>
+    <div class="social">
+      <a class="js-instagram" href="#" target="_blank" rel="noopener" aria-label="FurMems Co. on Instagram">
+        <img src="instagram.png" alt="" onerror="this.remove()">
+        <span>Instagram</span>
+      </a>
+      <a class="js-etsy" href="#">Etsy shop</a>
+    </div>
+  </div>
+</footer>
 
 <dialog class="mock" id="mockDialog" aria-labelledby="mockTitle">
   <div class="mock-body">
@@ -424,18 +492,22 @@ footer .bar a{text-decoration:none}
   </div>
 </dialog>
 
-<footer>
-  <div class="wrap bar">
-    <span>© <span id="yr"></span> FurMems Co. Custom pet portraits and keepsakes.</span>
-    <a class="js-etsy" href="#">Etsy shop</a>
-  </div>
-</footer>
-
 <script>
 (function(){
-  // Replace with your live Etsy shop link
-  var ETSY_URL = "https://www.etsy.com/shop/FurMems";
+  // ---- Settings ----
+  var ETSY_URL = "https://www.etsy.com/shop/FurMemsCo";          //Etsy shop link
+  var INSTAGRAM_URL = "https://www.instagram.com/furmems/";    //Instagram profile link
+  var PREVIEW_API = "https://furmems-preview.furmems.workers.dev";
+
+  var STYLES = [
+    { id: "pastel",     filter: "f-pastel",     name: "Pastel painting",   desc: "Soft, chalky and light. Our signature look." },
+    { id: "watercolor", filter: "f-watercolor", name: "Watercolor",        desc: "Washed color with soft, flowing edges." },
+    { id: "oil",        filter: "f-oil",        name: "Oil paint",         desc: "Rich, painterly color with real depth." },
+    { id: "halloween",  filter: "f-halloween",  name: "Halloween cartoon", desc: "Spooky-cute and bold. A limited-time seasonal style.", seasonal: true }
+  ];
+
   document.querySelectorAll(".js-etsy").forEach(function(a){ a.href = ETSY_URL; a.target = "_blank"; a.rel = "noopener"; });
+  document.querySelectorAll(".js-instagram").forEach(function(a){ a.href = INSTAGRAM_URL; });
   document.getElementById("yr").textContent = new Date().getFullYear();
 
   // Sample pet illustration shown before an upload
@@ -455,73 +527,134 @@ footer .bar a{text-decoration:none}
     '<path d="M192 316c0 18 16 18 16 0" fill="#E7A298"/></svg>';
   var SAMPLE = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(sampleSvg);
 
-  var current = SAMPLE, style = "f-pastel", printSrc = null, photoVersion = 0;
-  var pets = document.querySelectorAll(".pet");
-  var thumb = document.getElementById("thumb");
-  var msg = document.getElementById("msg");
-  var title = document.getElementById("dropTitle");
-  var products = document.getElementById("products");
+  var current = SAMPLE, printSrc = null, photoVersion = 0, styleIdx = 0;
+  // Phase 2: finished AI artwork per style can be dropped in here, e.g. ART.pastel = "data:image/jpeg;base64,..."
+  var ART = {};
 
-  function render(animate){
-    pets.forEach(function(el){
-      el.setAttribute("href", current);
-      if (style) el.setAttribute("filter", "url(#" + style + ")"); else el.removeAttribute("filter");
-    });
-    thumb.src = current;
-    if (animate){
-      products.querySelectorAll(".product").forEach(function(p){ p.classList.remove("pop"); void p.offsetWidth; p.classList.add("pop"); });
-    }
+  function styleById(id){ return STYLES.filter(function(s){ return s.id === id; })[0]; }
+
+  // Halloween decorations scaled to any box
+  function halloweenOverlay(x, y, w, h){
+    var m = Math.min(w, h), bw = m * 0.26, pw = m * 0.3;
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="url(#g-hw-vig)"/>' +
+      '<use href="#s-bat" x="' + (x + w * 0.14) + '" y="' + (y + h * 0.1) + '" width="' + bw + '" height="' + bw * 0.4 + '"/>' +
+      '<use href="#s-bat" x="' + (x + w * 0.62) + '" y="' + (y + h * 0.17) + '" width="' + bw * 0.75 + '" height="' + bw * 0.3 + '"/>' +
+      '<use href="#s-pumpkin" x="' + (x + w * 0.1) + '" y="' + (y + h - pw * 1.02) + '" width="' + pw + '" height="' + pw * 0.9 + '"/>' +
+      '<use href="#s-pumpkin" x="' + (x + w * 0.9 - pw * 0.8) + '" y="' + (y + h - pw * 0.9) + '" width="' + pw * 0.8 + '" height="' + pw * 0.72 + '"/>';
+  }
+  // The artwork for a style inside a box: finished art if we have it, otherwise a filtered preview
+  function artMarkup(x, y, w, h, s, src){
+    if (ART[s.id]) return '<image href="' + ART[s.id] + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" preserveAspectRatio="xMidYMid slice"/>';
+    return '<image href="' + src + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" preserveAspectRatio="xMidYMid slice" filter="url(#' + s.filter + ')"/>' +
+      (s.seasonal ? halloweenOverlay(x, y, w, h) : "");
   }
 
-  // Gallery: sample pet in each style
-  var styles = [
-    ["f-pastel","Pastel painting","Our signature: soft, chalky and light"],
-    ["f-watercolor","Watercolor","Soft edges and washed color"],
-    ["f-oil","Oil paint","Rich, painterly color blocks"],
-    ["f-sketch","Pencil sketch","Clean lines on white paper"]
-  ];
-  var gal = document.getElementById("gallery");
-  styles.forEach(function(s){
-    var f = document.createElement("figure");
-    f.innerHTML = '<svg viewBox="0 0 300 380" role="img" aria-label="' + s[1] + ' sample portrait">' +
-      '<rect width="300" height="380" fill="#FAF9F6"/>' +
-      '<image href="' + SAMPLE + '" x="18" y="18" width="264" height="344" preserveAspectRatio="xMidYMid slice" filter="url(#' + s[0] + ')"/></svg>' +
-      '<figcaption>' + s[1] + '<span>' + s[2] + '</span></figcaption>';
-    gal.appendChild(f);
-  });
-
-  // Style chips
-  document.getElementById("chips").addEventListener("click", function(e){
+  // ---- Style chips ----
+  var chips = document.getElementById("chips");
+  chips.innerHTML = STYLES.map(function(s, i){
+    return '<button type="button" class="chip" data-i="' + i + '" aria-pressed="' + (i === 0) + '">' + s.name + (s.seasonal ? ' <span class="tag">Seasonal</span>' : '') + '</button>';
+  }).join("");
+  chips.addEventListener("click", function(e){
     var b = e.target.closest(".chip"); if (!b) return;
-    document.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
-    style = b.dataset.style; render(true);
+    setStyle(Number(b.dataset.i)); goTo(styleIdx); pauseAuto(12000);
   });
+  function setStyle(i){
+    styleIdx = i;
+    chips.querySelectorAll(".chip").forEach(function(c, j){ c.setAttribute("aria-pressed", i === j ? "true" : "false"); });
+    document.getElementById("styleName").textContent = STYLES[i].name.toLowerCase();
+    renderProducts(true);
+  }
 
-  // Upload handling (downscaled locally, never sent anywhere)
+  // ---- Bubble slideshow ----
+  var slidesG = document.getElementById("slides"), dots = document.getElementById("dots");
+  var capTitle = document.getElementById("capTitle"), capText = document.getElementById("capText");
+  var slideIdx = 0, timer = null, resumeAt = 0;
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  dots.innerHTML = STYLES.map(function(s, i){ return '<button type="button" class="dot" aria-label="' + s.name + '" data-i="' + i + '"></button>'; }).join("");
+  var showSvg = document.getElementById("showSvg"), frame = document.getElementById("frame"), lastSize = "";
+  function renderSlides(){
+    var r = frame.getBoundingClientRect();
+    var W = Math.round(r.width) || 1200, H = Math.round(r.height) || 675;
+    lastSize = W + "x" + H;
+    showSvg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    // Portrait panel (4:5) centered on a soft, blurred copy of itself
+    var ah = H * (W > H * 1.1 ? 0.86 : 0.9), aw = Math.min(ah * 0.8, W * 0.9);
+    if (W <= H * 1.1){ aw = W * 0.8; ah = Math.min(aw * 1.25, H * 0.9); }
+    var ax = (W - aw) / 2, ay = (H - ah) / 2;
+    var cr = document.getElementById("c-art-r");
+    cr.setAttribute("x", ax); cr.setAttribute("y", ay); cr.setAttribute("width", aw); cr.setAttribute("height", ah);
+    cr.setAttribute("rx", 22);
+    slidesG.innerHTML = STYLES.map(function(s, i){
+      return '<g class="slide' + (i === slideIdx ? ' on' : '') + '">' +
+        '<g filter="url(#f-blur)" opacity=".85">' + artMarkup(-40, -40, W + 80, H + 80, s, current) + '</g>' +
+        '<rect width="' + W + '" height="' + H + '" fill="#FFF9F4" opacity=".25"/>' +
+        '<rect x="' + ax + '" y="' + ay + '" width="' + aw + '" height="' + ah + '" rx="22" fill="#FFF9F4" filter="url(#sh-art)"/>' +
+        '<g clip-path="url(#c-art)">' + artMarkup(ax, ay, aw, ah, s, current) + '</g>' +
+        '<rect x="' + ax + '" y="' + ay + '" width="' + aw + '" height="' + ah + '" rx="22" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="6"/>' +
+        '</g>';
+    }).join("");
+  }
+  var resizeT;
+  window.addEventListener("resize", function(){
+    clearTimeout(resizeT);
+    resizeT = setTimeout(function(){
+      var r = frame.getBoundingClientRect();
+      if (Math.round(r.width) + "x" + Math.round(r.height) !== lastSize){ renderSlides(); goTo(slideIdx); }
+    }, 150);
+  });
+  function goTo(i){
+    slideIdx = (i + STYLES.length) % STYLES.length;
+    slidesG.querySelectorAll(".slide").forEach(function(g, j){ g.classList.toggle("on", j === slideIdx); });
+    dots.querySelectorAll(".dot").forEach(function(d, j){ d.setAttribute("aria-current", j === slideIdx ? "true" : "false"); });
+    capTitle.textContent = STYLES[slideIdx].name;
+    capText.textContent = STYLES[slideIdx].desc;
+  }
+  function pauseAuto(ms){ resumeAt = Date.now() + ms; }
+  function startAuto(){
+    if (reduceMotion || timer) return;
+    timer = setInterval(function(){ if (!hold && Date.now() >= resumeAt && !document.hidden) goTo(slideIdx + 1); }, 4000);
+  }
+  dots.addEventListener("click", function(e){ var d = e.target.closest(".dot"); if (d){ goTo(Number(d.dataset.i)); pauseAuto(12000); } });
+  document.getElementById("prev").addEventListener("click", function(){ goTo(slideIdx - 1); pauseAuto(12000); });
+  document.getElementById("next").addEventListener("click", function(){ goTo(slideIdx + 1); pauseAuto(12000); });
+  var bubbleWrap = document.querySelector(".show");
+  var hold = 0;
+  bubbleWrap.addEventListener("mouseenter", function(){ hold |= 1; });
+  bubbleWrap.addEventListener("mouseleave", function(){ hold &= ~1; resumeAt = Math.max(resumeAt, Date.now() + 1500); });
+  bubbleWrap.addEventListener("focusin", function(){ hold |= 2; });
+  bubbleWrap.addEventListener("focusout", function(){ hold &= ~2; resumeAt = Math.max(resumeAt, Date.now() + 4000); });
+  frame.addEventListener("click", function(){ setStyle(slideIdx); pauseAuto(12000); document.getElementById("products").scrollIntoView(); });
+
+  // ---- Product previews ----
+  var thumb = document.getElementById("thumb"), msg = document.getElementById("msg"), title = document.getElementById("dropTitle");
+  function renderProducts(animate){
+    var s = STYLES[styleIdx];
+    document.querySelectorAll(".art").forEach(function(g){
+      g.innerHTML = artMarkup(+g.dataset.x, +g.dataset.y, +g.dataset.w, +g.dataset.h, s, current);
+    });
+    if (animate) document.querySelectorAll(".product").forEach(function(p){ p.classList.remove("pop"); void p.offsetWidth; p.classList.add("pop"); });
+  }
+  function renderAll(animate){ thumb.src = current; renderSlides(); goTo(slideIdx); renderProducts(animate); }
+
+  // ---- Upload ----
   function load(file){
     msg.textContent = "";
     if (!file) return;
-    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)){
-      msg.textContent = "That file isn't a supported photo. Choose a JPG, PNG or WebP image.";
-      return;
-    }
+    if (!/^image\/(png|jpe?g|webp)$/i.test(file.type)){ msg.textContent = "That file isn't a supported photo. Choose a JPG, PNG or WebP image."; return; }
     var reader = new FileReader();
     reader.onload = function(){
       var img = new Image();
       img.onload = function(){
-        var max = 900, s = Math.min(1, max / Math.max(img.width, img.height));
-        var c = document.createElement("canvas");
-        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        var s = Math.min(1, 900 / Math.max(img.width, img.height));
+        var c = document.createElement("canvas"); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
         c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
         current = c.toDataURL("image/jpeg", 0.9);
         var ps = Math.min(1, 1600 / Math.max(img.width, img.height));
-        var pc = document.createElement("canvas");
-        pc.width = Math.round(img.width * ps); pc.height = Math.round(img.height * ps);
-        var px = pc.getContext("2d"); px.fillStyle = "#fff"; px.fillRect(0, 0, pc.width, pc.height);
-        px.drawImage(img, 0, 0, pc.width, pc.height);
-        printSrc = pc.toDataURL("image/jpeg", 0.92); photoVersion++;
+        var pc = document.createElement("canvas"); pc.width = Math.round(img.width * ps); pc.height = Math.round(img.height * ps);
+        var px = pc.getContext("2d"); px.fillStyle = "#fff"; px.fillRect(0, 0, pc.width, pc.height); px.drawImage(img, 0, 0, pc.width, pc.height);
+        printSrc = pc.toDataURL("image/jpeg", 0.92); photoVersion++; ART = {};
         title.textContent = "Looking good. Choose another photo";
-        render(true);
+        renderAll(true);
       };
       img.onerror = function(){ msg.textContent = "Couldn't read that photo. Try saving it as a JPG or PNG first."; };
       img.src = reader.result;
@@ -534,15 +667,13 @@ footer .bar a{text-decoration:none}
   ["dragenter","dragover"].forEach(function(t){ drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.add("over"); }); });
   ["dragleave","drop"].forEach(function(t){ drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
   drop.addEventListener("drop", function(e){ load(e.dataTransfer.files[0]); });
-
   document.getElementById("reset").addEventListener("click", function(){
-    current = SAMPLE; printSrc = null; photoVersion++; title.textContent = "Upload your pet's photo"; msg.textContent = ""; render(true);
+    current = SAMPLE; printSrc = null; photoVersion++; ART = {}; title.textContent = "Upload your pet's photo"; msg.textContent = ""; renderAll(true);
   });
 
-  var PREVIEW_API = "https://furmems-preview.furmems.workers.dev";
-  var LABELS = { canvas: "Canvas", mug: "Mug", blanket: "Woven Blanket", ornament: "Ornament" };
-  var CONFIG = null, chosen = {}, currentKey = null;
-  var cache = {}, activeReq = 0;
+  // ---- Real product mockups from Printify (through the FurMems preview service) ----
+  var LABELS = { canvas: "Canvas", mug: "Mug", blanket: "Woven blanket", ornament: "Ornament" };
+  var CONFIG = null, chosen = {}, currentKey = null, cache = {}, activeReq = 0;
   var dlg = document.getElementById("mockDialog"), stage = document.getElementById("mockStage"),
       thumbs = document.getElementById("mockThumbs"), note = document.getElementById("mockNote"),
       mTitle = document.getElementById("mockTitle"), opts = document.getElementById("mockOpts"),
@@ -562,35 +693,35 @@ footer .bar a{text-decoration:none}
     var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, w, h); x.drawImage(img, 0, 0, w, h);
     return c.toDataURL("image/jpeg", 0.92); // throws if the browser blocks reading the canvas
   }
-  // Turn the photo (with the chosen style) into a JPEG to print from
+  // The chosen style rendered at print size (finished art if available, otherwise the styled preview)
   function printImage(){
-    var src = printSrc || SAMPLE;
+    var s = STYLES[styleIdx];
+    var src = ART[s.id] || printSrc || SAMPLE;
     return loadImg(src).then(function(img){
       var w = img.naturalWidth || 1200, h = img.naturalHeight || 1500;
-      var plain = function(){ return { data: toJpeg(img, w, h), styled: !style }; };
-      if (!style) return plain();
-      var f = document.getElementById(style).outerHTML;
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + w + '" height="' + h + '">' +
-        '<defs>' + f + '</defs><image href="' + src + '" xlink:href="' + src + '" width="' + w + '" height="' + h +
-        '" preserveAspectRatio="none" filter="url(#' + style + ')"/></svg>';
+      var plain = function(){ return { data: toJpeg(img, w, h), styled: !!ART[s.id] }; };
+      if (ART[s.id]) return plain();
+      var ids = [s.filter].concat(s.seasonal ? ["g-hw-vig", "g-pump", "s-bat", "s-pumpkin"] : []);
+      var defs = ids.map(function(id){ return document.getElementById(id).outerHTML; }).join("");
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' +
+        '<defs>' + defs + '</defs>' + artMarkup(0, 0, w, h, s, src) + '</svg>';
       return loadImg("data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg))
         .then(function(si){ return { data: toJpeg(si, w, h), styled: true }; })
         .catch(plain);
     });
   }
 
-  // Back of the ornament: pet's name and an optional second line on a soft cream background
+  // Back of the ornament: pet's name and an optional second line
   function backImage(variant, name, line){
     var w = (variant && variant.width) || 900, h = (variant && variant.height) || 900;
     var heart = variant && /heart/i.test(variant.name);
     var ready = document.fonts && document.fonts.load ?
-      Promise.all([document.fonts.load('80px "Young Serif"'), document.fonts.load('600 40px "Instrument Sans"')]).catch(function(){}) : Promise.resolve();
+      Promise.all([document.fonts.load('italic 700 80px "Lora"'), document.fonts.load('500 40px "Poppins"')]).catch(function(){}) : Promise.resolve();
     return ready.then(function(){
       var c = document.createElement("canvas"); c.width = w; c.height = h;
       var x = c.getContext("2d");
-      x.fillStyle = "#FBF7F4"; x.fillRect(0, 0, w, h);
+      x.fillStyle = "#FFF9F4"; x.fillRect(0, 0, w, h);
       var cx = w / 2, cy = h * (heart ? 0.42 : 0.5), maxW = w * (heart ? 0.62 : 0.72);
-      // small heart above the name
       var hs = w * 0.035, hy = cy - h * 0.2;
       x.fillStyle = "#F0AFAE"; x.beginPath();
       x.moveTo(cx, hy + hs * 1.4);
@@ -598,26 +729,22 @@ footer .bar a{text-decoration:none}
       x.bezierCurveTo(cx + hs * 1.2, hy - hs * 1.5, cx + hs * 2.2, hy, cx, hy + hs * 1.4);
       x.fill();
       x.textAlign = "center"; x.textBaseline = "middle";
-      var size = w * 0.16;
-      x.font = size + 'px "Young Serif", Georgia, serif';
-      while (x.measureText(name).width > maxW && size > 20){ size -= 2; x.font = size + 'px "Young Serif", Georgia, serif'; }
+      var size = w * 0.16, font = function(sz){ return 'italic 700 ' + sz + 'px "Lora", Georgia, serif'; };
+      x.font = font(size);
+      while (x.measureText(name).width > maxW && size > 20){ size -= 2; x.font = font(size); }
       x.fillStyle = "#5B4550"; x.fillText(name, cx, cy);
       if (line){
-        var ls = w * 0.05; x.font = '600 ' + ls + 'px "Instrument Sans", Arial, sans-serif';
-        while (x.measureText(line.toUpperCase()).width > maxW && ls > 12){ ls -= 1; x.font = '600 ' + ls + 'px "Instrument Sans", Arial, sans-serif'; }
+        var ls = w * 0.045, f2 = function(sz){ return '500 ' + sz + 'px "Poppins", Arial, sans-serif'; };
+        x.font = f2(ls);
+        while (x.measureText(line.toUpperCase()).width > maxW && ls > 12){ ls -= 1; x.font = f2(ls); }
         x.fillStyle = "#B98CA6"; x.fillText(line.toUpperCase(), cx, cy + size * 0.75 + ls * 0.6);
       }
       return c.toDataURL("image/jpeg", 0.95);
     });
   }
 
-  function showWait(text){
-    stage.innerHTML = '<div class="mock-wait"><div class="spin"></div>' + text + '</div>';
-    thumbs.innerHTML = ""; note.textContent = "";
-  }
-  function showError(text){
-    stage.innerHTML = '<div class="mock-wait">' + text + '</div>'; thumbs.innerHTML = "";
-  }
+  function showWait(text){ stage.innerHTML = '<div class="mock-wait"><div class="spin"></div>' + text + '</div>'; thumbs.innerHTML = ""; note.textContent = ""; }
+  function showError(text){ stage.innerHTML = '<div class="mock-wait">' + text + '</div>'; thumbs.innerHTML = ""; }
   function showMockups(result){
     var pick = function(i){
       stage.innerHTML = '<img alt="' + mTitle.textContent + ' with your pet" src="' + result.mockups[i] + '">';
@@ -628,7 +755,7 @@ footer .bar a{text-decoration:none}
     thumbs.querySelectorAll("button").forEach(function(b, i){ b.addEventListener("click", function(){ pick(i); }); });
     pick(0);
     note.textContent = (result.styled
-      ? "This is a real product photo from our print partner with your photo in the style you picked."
+      ? "This is a real product photo from our print partner with your pet in the " + result.styleName.toLowerCase() + " style."
       : "This real product photo shows your original photo. Your finished piece will be in the style you picked.") +
       " Your photo is only used to make this preview.";
   }
@@ -652,9 +779,9 @@ footer .bar a{text-decoration:none}
   }
 
   function generate(){
-    var key = currentKey, pc = productConfig(key), v = currentVariant(key);
+    var key = currentKey, pc = productConfig(key), v = currentVariant(key), s = STYLES[styleIdx];
     var name = pc && pc.back ? backName.value.trim() : "", line = pc && pc.back ? backLine.value.trim() : "";
-    var ck = [key, v ? v.id : "", style, photoVersion, name, line].join("|");
+    var ck = [key, v ? v.id : "", s.id, photoVersion, name, line].join("|");
     if (cache[ck]) return showMockups(cache[ck]);
     var req = ++activeReq;
     var what = (v && pc.options.length > 1 ? v.name + " " : "") + LABELS[key].toLowerCase();
@@ -663,14 +790,13 @@ footer .bar a{text-decoration:none}
       var img = parts[0], back = parts[1];
       var payload = { product: key, variant: v ? v.id : undefined, image: img.data.split(",")[1] };
       if (back) payload.backImage = back.split(",")[1];
-      return fetch(API + "/mockup", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
-      }).then(function(r){
-        return r.json().catch(function(){ return {}; }).then(function(d){
-          if (!r.ok || !d.mockups || !d.mockups.length) throw new Error(d.error || "We couldn't make that preview. Please try again.");
-          d.styled = img.styled; return d;
+      return fetch(API + "/mockup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function(r){
+          return r.json().catch(function(){ return {}; }).then(function(d){
+            if (!r.ok || !d.mockups || !d.mockups.length) throw new Error(d.error || "We couldn't make that preview. Please try again.");
+            d.styled = img.styled; d.styleName = s.name; return d;
+          });
         });
-      });
     }).then(function(d){
       cache[ck] = d;
       if (req === activeReq && dlg.open) showMockups(d);
@@ -690,25 +816,21 @@ footer .bar a{text-decoration:none}
   }
   document.getElementById("backApply").addEventListener("click", generate);
   [backName, backLine].forEach(function(i){ i.addEventListener("keydown", function(e){ if (e.key === "Enter") generate(); }); });
-
-  document.querySelectorAll(".real-btn").forEach(function(b){
-    b.addEventListener("click", function(){ openMockup(b.dataset.product); });
-  });
+  document.querySelectorAll(".real-btn").forEach(function(b){ b.addEventListener("click", function(){ openMockup(b.dataset.product); }); });
   function closeDlg(){ activeReq++; if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
   document.getElementById("mockClose").addEventListener("click", closeDlg);
   document.getElementById("mockClose2").addEventListener("click", closeDlg);
   dlg.addEventListener("click", function(e){ if (e.target === dlg) closeDlg(); });
 
-  render(false);
+  // ---- Start ----
+  renderAll(false); startAuto();
   // Convert the sample illustration to a regular image so it renders consistently everywhere
   loadImg(SAMPLE).then(function(img){
     var c = document.createElement("canvas"); c.width = 800; c.height = 1000;
     c.getContext("2d").drawImage(img, 0, 0, 800, 1000);
-    var raster = c.toDataURL("image/jpeg", 0.92);
-    var wasSample = current === SAMPLE;
+    var raster = c.toDataURL("image/jpeg", 0.92), wasSample = current === SAMPLE;
     SAMPLE = raster;
-    document.querySelectorAll("#gallery image").forEach(function(i){ i.setAttribute("href", raster); });
-    if (wasSample){ current = raster; render(false); }
+    if (wasSample){ current = raster; renderAll(false); }
   }).catch(function(){});
 })();
 </script>
